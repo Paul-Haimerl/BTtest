@@ -17,3 +17,5 @@ You can install the development version of BTtest from
 # install.packages("devtools")
 devtools::install_github("Paul-Haimerl/BTtest")
 ```
+
+## Example
