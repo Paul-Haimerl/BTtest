@@ -4,7 +4,7 @@
 \alias{randomTestWrapper_R}
 \title{Runs the iterative randomized testing routine}
 \usage{
-randomTestWrapper_R(phi, rmax, sig, R = N, u = sqrt(2))
+randomTestWrapper_R(phi, rmax, sig, R, u)
 }
 \arguments{
 \item{phi}{vector of scaled eigenvalues}

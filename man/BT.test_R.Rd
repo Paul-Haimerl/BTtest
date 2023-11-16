@@ -2,20 +2,34 @@
 % Please edit documentation in R/TestProc.R
 \name{BT.test_R}
 \alias{BT.test_R}
-\title{Runs the Barigozzi Trapani test for the number of factors}
+\title{Runs the Barigozzi & Trapani test for the number of factors}
 \usage{
 BT.test_R(X, rmax = 10, alpha = 0.05)
 }
 \arguments{
-\item{X}{(T x N) matrix of observations}
+\item{X}{a (T x N) matrix of observations}
 
-\item{rmax}{maximum number of factors to consider}
+\item{rmax}{the maximum number of factors to consider}
 
-\item{alpha}{significance level}
+\item{alpha}{the significance level}
 }
 \value{
-vector with the estimated number of factors
+A vector with the estimated number of (1) factors with a linear trend (2) zero-mean I(1) factors and (3) zero-mean I(0) factors
 }
 \description{
-Runs the Barigozzi Trapani test for the number of factors
+Runs the testing routine proposed in Barigozzi & Trapani (2022) to estimate the number of common trends in a nonstationary panel
+}
+\details{
+For details on the testing procedure I refer to Barigozzi & Trapani (2022, sec. 4)
+}
+\examples{
+# Simulate some data
+X <- sim.DGP(N = 100, n.Periods = 200)
+BT.test_R(X = X, rmax = 10, alpha = 0.05)
+}
+\references{
+Matteo Barigozzi & Lorenzo Trapani (2022) Testing for Common Trends in Nonstationary Large Datasets, Journal of Businss & Economic Statistics, 40:3, 1107-1122, DOI: 10.1080/07350015.2021.1901719
+}
+\seealso{
+\code{\link[=sim.DGP]{sim.DGP()}}
 }

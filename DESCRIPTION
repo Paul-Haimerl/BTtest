@@ -1,5 +1,5 @@
 Package: BTtest
-Title: Estimate number of factors in large nonstationary datasets
+Title: Estimate the Nmber of Factors in Large Nonstationary Datasets
 Version: 0.9
 Authors@R: 
     person("Paul", "Haimerl", , "paul.haimerl@maastrichtuniversity.nl", role = c("aut", "cre"),
@@ -12,5 +12,3 @@ BugReports: https://github.com/Paul-Haimerl/BTtest/issues
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 URL: https://github.com/Paul-Haimerl/BTtest
-Imports: Rcpp (>= 1.0.11)
-LinkingTo: Rcpp, RcppArmadillo

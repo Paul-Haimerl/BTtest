@@ -2,36 +2,50 @@
 % Please edit documentation in R/Sim.R
 \name{sim.DGP}
 \alias{sim.DGP}
-\title{Simulate a DGP according to sec. 5}
+\title{Simulate a nonstationary panel with common trends according to sec. 5}
 \usage{
 sim.DGP(
   N = 100,
-  Tt = 200,
+  n.Periods = 200,
   drift = TRUE,
   driftI1 = TRUE,
   r_I1 = 2,
   r_I0 = 1,
-  factor = FALSE
+  return.factor = FALSE
 )
 }
 \arguments{
-\item{N}{number of cross-sectional units}
+\item{N}{the number of cross-sectional units}
 
-\item{Tt}{number of simulated time periods}
+\item{n.Periods}{the number of simulated time periods}
 
 \item{drift}{logical. If TRUE, a linear trend is included (corresponds to both d_1 and r_1)}
 
 \item{driftI1}{logical. If TRUE, an I(1) factor moves around the linear trend. Else an I(0) factor (corresponds to d_2)}
 
-\item{r_I1}{total number of non zero-mean I(1) factors (corresponds to r_2 + r_1 * d_2)}
+\item{r_I1}{the total number of non zero-mean I(1) factors (corresponds to r_2 + r_1 * d_2)}
 
-\item{r_I0}{number of non zero-mean I(0) factors (corresponds to r_3 + r_1 * (1 - d_2))}
+\item{r_I0}{the total number of non zero-mean I(0) factors (corresponds to r_3 + r_1 * (1 - d_2))}
 
-\item{factor}{logical. If TRUE, the factor matrix is returned. Else the simulated observations}
+\item{return.factor}{logical. If TRUE, the factor matrix is returned. Else the simulated observations}
 }
 \value{
-matrix with the simulated observations
+A (T x N) matrix of simulated observations. If return.factor == TRUE, a (N x r) matrix of factors.
 }
 \description{
-Simulate a DGP according to sec. 5
+Simulate a data generating process as laid out in Barigozzi & Trapani (2022, sec. 5)
+}
+\details{
+For further details the construction of the DGP see Barigozzi & Trapani (2022, sec. 5)
+}
+\examples{
+# Simulate a DGP containing a factor with a linear drift (r1 d1 = 1) and I(1) process (d2 = 1),
+# one zero-mean I(1) factor (r2 = 1) and two zero-mean I(0) factors (r3 = 2)
+X <- sim.DGP(N = 100, n.Periods = 200, drift = TRUE, driftI1 = TRUE, r_I1 = 2, r_I0 = 2)
+
+# Simulate a DGP containing only 3 common zero-mean I(0) factor (r1 = 0, r2 = 0, r3 = 3)
+X <- sim.DGP(N = 100, n.Periods = 200, drift = FALSE, driftI1 = TRUE, r_I1 = 0, r_I0 = 3)
+}
+\references{
+Matteo Barigozzi & Lorenzo Trapani (2022) Testing for Common Trends in Nonstationary Large Datasets, Journal of Businss & Economic Statistics, 40:3, 1107-1122, DOI: 10.1080/07350015.2021.1901719
 }

@@ -4,7 +4,7 @@
 \alias{randomTest_R}
 \title{Runs the randomized testing routine}
 \usage{
-randomTest_R(phi, p = 1, R = N, u = sqrt(2))
+randomTest_R(phi, p, R, u)
 }
 \arguments{
 \item{phi}{vector of scaled eigenvalues}

@@ -1,10 +1,22 @@
-#' Runs the Barigozzi Trapani test for the number of factors
+#' Runs the Barigozzi & Trapani test for the number of factors
 #'
-#' @param X (T x N) matrix of observations
-#' @param rmax maximum number of factors to consider
-#' @param alpha significance level
+#' @description Runs the testing routine proposed in Barigozzi & Trapani (2022) to estimate the number of common trends in a nonstationary panel
 #'
-#' @return vector with the estimated number of factors
+#' @param X a (T x N) matrix of observations
+#' @param rmax the maximum number of factors to consider
+#' @param alpha the significance level
+#'
+#' @details For details on the testing procedure I refer to Barigozzi & Trapani (2022, sec. 4)
+#'
+#' @seealso [sim.DGP()]
+#'
+#' @examples
+#' # Simulate some data
+#' X <- sim.DGP(N = 100, n.Periods = 200)
+#' BT.test_R(X = X, rmax = 10, alpha = 0.05)
+#' @references Matteo Barigozzi & Lorenzo Trapani (2022) Testing for Common Trends in Nonstationary Large Datasets, Journal of Businss & Economic Statistics, 40:3, 1107-1122, DOI: 10.1080/07350015.2021.1901719
+#'
+#' @return A vector with the estimated number of (1) factors with a linear trend (2) zero-mean I(1) factors and (3) zero-mean I(0) factors
 #'
 #' @export
 
@@ -50,21 +62,23 @@ BT.test_R <- function(X, rmax = 10, alpha = .05) {
   #### Test for r_1           ####
   #------------------------------#
 
-  pvalue_1 <- randomTest_R(phi = phi_1)
+  # Set the threshold to define the simulated Bernoulli sequence (see step A1.2 in sec. 4)
+  u <- sqrt(2)
+  pvalue_1 <- randomTest_R(phi = phi_1, R = N, p = 1, u = u)
   r_1_hat <- ifelse(pvalue_1 > sig, 1, 0)
 
   #------------------------------#
   #### Test for r_star        ####
   #------------------------------#
 
-  r_star_hat <- randomTestWrapper_R(phi = phi_2, rmax = rmax, sig = sig)
+  r_star_hat <- randomTestWrapper_R(phi = phi_2, rmax = rmax, sig = sig, R = N, u = u)
   r_2_hat <- r_star_hat - r_1_hat
 
   #------------------------------#
   #### Test for r             ####
   #------------------------------#
 
-  r_hat <- randomTestWrapper_R(phi = phi_3, rmax = rmax, sig = sig)
+  r_hat <- randomTestWrapper_R(phi = phi_3, rmax = rmax, sig = sig, R = N, u = u)
   r_3_hat <- r_hat - r_star_hat
 
   return(c(r_1_hat = r_1_hat, r_2_hat = r_2_hat, r_3_hat = r_3_hat))
@@ -82,7 +96,7 @@ BT.test_R <- function(X, rmax = 10, alpha = .05) {
 #' @return estimated number of factors
 #'
 
-randomTestWrapper_R <- function(phi, rmax, sig, R = N, u = sqrt(2)) {
+randomTestWrapper_R <- function(phi, rmax, sig, R, u) {
   r_hat <- 0
   # Iteratively test the different eigenvalues
   for (r in 1:rmax) {
@@ -106,7 +120,7 @@ randomTestWrapper_R <- function(phi, rmax, sig, R = N, u = sqrt(2)) {
 #'
 #' @return p-value of the test
 
-randomTest_R <- function(phi, p = 1, R = N, u = sqrt(2)) {
+randomTest_R <- function(phi, p, R, u) {
   # set.seed(2)
   phi <- phi[p]
   # Step A1.1

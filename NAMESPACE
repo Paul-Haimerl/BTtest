@@ -2,6 +2,3 @@
 
 export(BT.test_R)
 export(sim.DGP)
-useDynLib(BTtest, .registration=TRUE)
-importFrom(Rcpp, sourceCpp)
-exportPattern("^[[:alpha:]]+")

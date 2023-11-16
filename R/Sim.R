@@ -1,24 +1,38 @@
-#' Simulate a DGP according to sec. 5
+#' Simulate a nonstationary panel with common trends according to sec. 5
 #'
-#' @param N number of cross-sectional units
-#' @param Tt number of simulated time periods
+#' @description Simulate a data generating process as laid out in Barigozzi & Trapani (2022, sec. 5)
+#'
+#' @param N the number of cross-sectional units
+#' @param n.Periods the number of simulated time periods
 #' @param drift logical. If TRUE, a linear trend is included (corresponds to both d_1 and r_1)
 #' @param driftI1 logical. If TRUE, an I(1) factor moves around the linear trend. Else an I(0) factor (corresponds to d_2)
-#' @param r_I1 total number of non zero-mean I(1) factors (corresponds to r_2 + r_1 * d_2)
-#' @param r_I0 number of non zero-mean I(0) factors (corresponds to r_3 + r_1 * (1 - d_2))
-#' @param factor logical. If TRUE, the factor matrix is returned. Else the simulated observations
+#' @param r_I1 the total number of non zero-mean I(1) factors (corresponds to r_2 + r_1 * d_2)
+#' @param r_I0 the total number of non zero-mean I(0) factors (corresponds to r_3 + r_1 * (1 - d_2))
+#' @param return.factor logical. If TRUE, the factor matrix is returned. Else the simulated observations
 #'
-#' @return matrix with the simulated observations
+#' @details For further details the construction of the DGP see Barigozzi & Trapani (2022, sec. 5)
+#'
+#' @examples
+#' # Simulate a DGP containing a factor with a linear drift (r1 d1 = 1) and I(1) process (d2 = 1),
+#' # one zero-mean I(1) factor (r2 = 1) and two zero-mean I(0) factors (r3 = 2)
+#' X <- sim.DGP(N = 100, n.Periods = 200, drift = TRUE, driftI1 = TRUE, r_I1 = 2, r_I0 = 2)
+#'
+#' # Simulate a DGP containing only 3 common zero-mean I(0) factor (r1 = 0, r2 = 0, r3 = 3)
+#' X <- sim.DGP(N = 100, n.Periods = 200, drift = FALSE, driftI1 = TRUE, r_I1 = 0, r_I0 = 3)
+#' @references Matteo Barigozzi & Lorenzo Trapani (2022) Testing for Common Trends in Nonstationary Large Datasets, Journal of Businss & Economic Statistics, 40:3, 1107-1122, DOI: 10.1080/07350015.2021.1901719
+#'
+#' @return A (T x N) matrix of simulated observations. If return.factor == TRUE, a (N x r) matrix of factors.
 #'
 #' @export
 
-sim.DGP <- function(N = 100, Tt = 200, drift = TRUE, driftI1 = TRUE, r_I1 = 2, r_I0 = 1, factor = FALSE) {
+sim.DGP <- function(N = 100, n.Periods = 200, drift = TRUE, driftI1 = TRUE, r_I1 = 2, r_I0 = 1, return.factor = FALSE) {
   set.seed(2)
 
   #------------------------------#
   #### Preliminaries          ####
   #------------------------------#
 
+  Tt <- n.Periods
   # For consistency with Barigozzi and Trapani (2021)
   d_1 <- r_1 <- as.numeric(drift)
   # Note that (r_1 == 1, d_1 == 0, d_2 == 1, r_2 == x) is observationally identical with (r_1 == 0, r_2 == x + 1) (same with d_2 == 0 and r_3)
@@ -94,7 +108,7 @@ sim.DGP <- function(N = 100, Tt = 200, drift = TRUE, driftI1 = TRUE, r_I1 = 2, r
     F_3 <- I0_fmat
   }
   Fmat <- cbind(F_1, F_2, F_3)
-  if (factor) return(Fmat)
+  if (return.factor) return(Fmat)
 
   #------------------------------#
   #### Cross-sectional errors ####
@@ -179,7 +193,7 @@ rescaleFactors <- function(Fmat, Lambda, norm, indx, fd) {
 #'
 
 simCrossSecErr <- function(Tt, N, a = .5, b = .5, C = min(floor(N / 20), 10)) {
-  V <- matrix(rnorm(Tt * N), nr = Tt)
+  V <- matrix(stats::rnorm(Tt * N), nrow = Tt)
   # Specify the cross-sectional correlation
   k_seq <- 1:C
   # Here deviation from eq. 34, by allowing the i index to circle around after reaching N
@@ -201,7 +215,7 @@ simCrossSecErr <- function(Tt, N, a = .5, b = .5, C = min(floor(N / 20), 10)) {
 #'
 
 simLambda <- function(r, N) {
-  A <- matrix(stats::rnorm(r * N), nc = r)
+  A <- matrix(stats::rnorm(r * N), ncol = r)
   # Perform QR decomposition to obtain orthonormal matrix
   QR <- qr(A)
   Qmat <- qr.Q(QR)
