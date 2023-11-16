@@ -14,13 +14,13 @@ BT.test_R(X, rmax = 10, alpha = 0.05)
 \item{alpha}{the significance level}
 }
 \value{
-A vector with the estimated number of (1) factors with a linear trend (2) zero-mean I(1) factors and (3) zero-mean I(0) factors
+A vector with the estimated number of (1) factors with a linear trend (2) zero-mean I(1) factors and (3) zero-mean I(0) factors.
 }
 \description{
-Runs the testing routine proposed in Barigozzi & Trapani (2022) to estimate the number of common trends in a nonstationary panel
+Runs the testing routine proposed in Barigozzi & Trapani (2022) to estimate the number of common trends in a nonstationary panel.
 }
 \details{
-For details on the testing procedure I refer to Barigozzi & Trapani (2022, sec. 4)
+For details on the testing procedure I refer to Barigozzi & Trapani (2022, sec. 4).
 }
 \examples{
 # Simulate some data

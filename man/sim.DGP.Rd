@@ -33,10 +33,10 @@ sim.DGP(
 A (T x N) matrix of simulated observations. If return.factor == TRUE, a (N x r) matrix of factors.
 }
 \description{
-Simulate a data generating process as laid out in Barigozzi & Trapani (2022, sec. 5)
+Simulate a data generating process as laid out in Barigozzi & Trapani (2022, sec. 5).
 }
 \details{
-For further details the construction of the DGP see Barigozzi & Trapani (2022, sec. 5)
+For further details the construction of the DGP see Barigozzi & Trapani (2022, sec. 5).
 }
 \examples{
 # Simulate a DGP containing a factor with a linear drift (r1 d1 = 1) and I(1) process (d2 = 1),

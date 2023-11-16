@@ -1,12 +1,12 @@
 #' Runs the Barigozzi & Trapani test for the number of factors
 #'
-#' @description Runs the testing routine proposed in Barigozzi & Trapani (2022) to estimate the number of common trends in a nonstationary panel
+#' @description Runs the testing routine proposed in Barigozzi & Trapani (2022) to estimate the number of common trends in a nonstationary panel.
 #'
 #' @param X a (T x N) matrix of observations
 #' @param rmax the maximum number of factors to consider
 #' @param alpha the significance level
 #'
-#' @details For details on the testing procedure I refer to Barigozzi & Trapani (2022, sec. 4)
+#' @details For details on the testing procedure I refer to Barigozzi & Trapani (2022, sec. 4).
 #'
 #' @seealso [sim.DGP()]
 #'
@@ -16,7 +16,7 @@
 #' BT.test_R(X = X, rmax = 10, alpha = 0.05)
 #' @references Matteo Barigozzi & Lorenzo Trapani (2022) Testing for Common Trends in Nonstationary Large Datasets, Journal of Businss & Economic Statistics, 40:3, 1107-1122, DOI: 10.1080/07350015.2021.1901719
 #'
-#' @return A vector with the estimated number of (1) factors with a linear trend (2) zero-mean I(1) factors and (3) zero-mean I(0) factors
+#' @return A vector with the estimated number of (1) factors with a linear trend (2) zero-mean I(1) factors and (3) zero-mean I(0) factors.
 #'
 #' @export
 

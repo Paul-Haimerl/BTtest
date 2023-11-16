@@ -1,6 +1,6 @@
 #' Simulate a nonstationary panel with common trends according to sec. 5
 #'
-#' @description Simulate a data generating process as laid out in Barigozzi & Trapani (2022, sec. 5)
+#' @description Simulate a data generating process as laid out in Barigozzi & Trapani (2022, sec. 5).
 #'
 #' @param N the number of cross-sectional units
 #' @param n.Periods the number of simulated time periods
@@ -10,7 +10,7 @@
 #' @param r_I0 the total number of non zero-mean I(0) factors (corresponds to r_3 + r_1 * (1 - d_2))
 #' @param return.factor logical. If TRUE, the factor matrix is returned. Else the simulated observations
 #'
-#' @details For further details the construction of the DGP see Barigozzi & Trapani (2022, sec. 5)
+#' @details For further details the construction of the DGP see Barigozzi & Trapani (2022, sec. 5).
 #'
 #' @examples
 #' # Simulate a DGP containing a factor with a linear drift (r1 d1 = 1) and I(1) process (d2 = 1),
