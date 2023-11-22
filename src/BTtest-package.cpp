@@ -121,30 +121,8 @@ int randomTestWrapper(const arma::mat &Phi, const int &indx, const int &r_max, c
   return r_hat;
 }
 
-
-//' Barigozzi & Trapani ([2022](https://doi.org/10.1080/07350015.2021.1901719))  test
-//'
-//' @description Runs the testing routine proposed in Barigozzi & Trapani ([2022](https://doi.org/10.1080/07350015.2021.1901719)) to estimate the number and types of common trends in a nonstationary panel.
-//'
-//' @param X a (T x N) matrix of observations
-//' @param r_max the maximum number of factors to consider
-//' @param alpha the significance level
-//' @param BT1 logical. If TRUE, a more conservative eigenvalue rescaling scheme is used
-//'
-//' @details For details on the testing procedure I refer to Barigozzi & Trapani ([2022](https://doi.org/10.1080/07350015.2021.1901719), sec. 4).
-//'
-//' @examples
-//' # Simulate a nonstationary panel
-//' # X <- sim_DGP(N = 100, n_Periods = 200)
-//'
-//' # Obtain the estimated number of factors (i) with a linear trend (r_1), (ii) zero-mean I(1) (r_2)
-//' # and (iii) zero-mean I(0) (r_3)
-//' # BTtest(X = X, rmax = 10, alpha = 0.05, BT1 = TRUE)
-//' @references Barigozzi, M., & Trapani, L. (2022). Testing for common trends in nonstationary large datasets. *Journal of Business & Economic Statistics*, 40(3), 1107-1122. DOI: [10.1080/07350015.2021.1901719](https://doi.org/10.1080/07350015.2021.1901719)
-//'
-//' @return A vector with the estimated number of (1) factors with a linear trend (2) zero-mean I(1) factors and (3) zero-mean I(0) factors.
 // [[Rcpp::export]]
-NumericVector BTtest(const arma::mat &X, const int &r_max, const double &alpha, const bool &BT1)
+NumericVector BTtestRoutine(const arma::mat &X, const int &r_max, const double &alpha, const bool &BT1)
 {
 
   //------------------------------//
@@ -219,26 +197,8 @@ arma::vec penal_3(const int &N, const int &T, const int &r_max)
 }
 
 
-//' Bai ([2004](https://doi.org/10.1016/j.jeconom.2003.10.022)) IPC
-//'
-//' @description Calculates the Integrated Panel Criterions to estimate the number of common trends in a nonstationary panel as proposed in Bai (2004).
-//'
-//' @param X a (T x N) matrix of observations
-//' @param r_max the maximum number of factors to consider
-//'
-//' @details For further details on the criterion, I refer to Bai ([2004](https://doi.org/10.1016/j.jeconom.2003.10.022), sec. 3).
-//'
-//' @examples
-//' # Simulate a nonstationary panel
-//' # X <- sim_DGP(N = 100, n_Periods = 200)
-//'
-//' # Obtain the estimated number of common factors pre criterion
-//' # BaiIPC(X = X, r_max = 10)
-//' @references Bai, J. (2004). Estimating cross-section common stochastic trends in nonstationary panel data. *Journal of Econometrics*, 122(1), 137-183. DOI: [10.1016/j.jeconom.2003.10.022](https://doi.org/10.1016/j.jeconom.2003.10.022)
-//'
-//' @return A vector of the estimated number of factors per criterion.
 // [[Rcpp::export]]
-NumericVector BaiIPC(const arma::mat &X, const int &r_max)
+NumericVector BaiIPCRoutine(const arma::mat &X, const int &r_max)
 {
 
   //------------------------------//

@@ -1,6 +1,6 @@
 #' Simulate a nonstationary panel with common trends
 #'
-#' @description Simulate a nonstationary panel as laid out in Barigozzi & Trapani ([2022](https://doi.org/10.1080/07350015.2021.1901719), sec. 5).
+#' @description Simulate a nonstationary panel as laid out in Barigozzi & Trapani ([2022](\doi.org/10.1080/07350015.2021.1901719), sec. 5).
 #'
 #' @param N the number of cross-sectional units
 #' @param n_Periods the number of simulated time periods
@@ -10,7 +10,7 @@
 #' @param r_I0 the total number of non zero-mean I(0) factors (corresponding to r_3 + r_1 * (1 - d_2))
 #' @param return_factor logical. If TRUE, the factor matrix is returned. Else the simulated observations
 #'
-#' @details For further details the construction of the DGP see Barigozzi & Trapani ([2022](https://doi.org/10.1080/07350015.2021.1901719), sec. 5).
+#' @details For further details the construction of the DGP see Barigozzi & Trapani ([2022](\doi.org/10.1080/07350015.2021.1901719), sec. 5).
 #'
 #' @examples
 #' # Simulate a panel containing a factor with a linear drift (r1 d1 = 1) and I(1) process (d2 = 1),
@@ -19,7 +19,7 @@
 #'
 #' # Simulate a panel containing only 3 common zero-mean I(0) factor (r1 = 0, r2 = 0, r3 = 3)
 #' X <- sim_DGP(N = 100, n_Periods = 200, drift = FALSE, drift_I1 = TRUE, r_I1 = 0, r_I0 = 3)
-#' @references Barigozzi, M., & Trapani, L. (2022). Testing for common trends in nonstationary large datasets. *Journal of Business & Economic Statistics*, 40(3), 1107-1122. DOI: [10.1080/07350015.2021.1901719](https://doi.org/10.1080/07350015.2021.1901719)
+#' @references Barigozzi, M., & Trapani, L. (2022). Testing for common trends in nonstationary large datasets. *Journal of Business & Economic Statistics*, 40(3), 1107-1122. DOI: [10.1080/07350015.2021.1901719](\doi.org/10.1080/07350015.2021.1901719)
 #'
 #' @return A T x N matrix of simulated observations. If `return_factor == TRUE`, a N x r matrix of factors.
 #'

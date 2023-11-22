@@ -33,10 +33,10 @@ sim_DGP(
 A T x N matrix of simulated observations. If \code{return_factor == TRUE}, a N x r matrix of factors.
 }
 \description{
-Simulate a nonstationary panel as laid out in Barigozzi & Trapani (\href{https://doi.org/10.1080/07350015.2021.1901719}{2022}, sec. 5).
+Simulate a nonstationary panel as laid out in Barigozzi & Trapani (\href{\doi.org/10.1080/07350015.2021.1901719}{2022}, sec. 5).
 }
 \details{
-For further details the construction of the DGP see Barigozzi & Trapani (\href{https://doi.org/10.1080/07350015.2021.1901719}{2022}, sec. 5).
+For further details the construction of the DGP see Barigozzi & Trapani (\href{\doi.org/10.1080/07350015.2021.1901719}{2022}, sec. 5).
 }
 \examples{
 # Simulate a panel containing a factor with a linear drift (r1 d1 = 1) and I(1) process (d2 = 1),
@@ -47,5 +47,5 @@ X <- sim_DGP(N = 100, n_Periods = 200, drift = TRUE, drift_I1 = TRUE, r_I1 = 2, 
 X <- sim_DGP(N = 100, n_Periods = 200, drift = FALSE, drift_I1 = TRUE, r_I1 = 0, r_I0 = 3)
 }
 \references{
-Barigozzi, M., & Trapani, L. (2022). Testing for common trends in nonstationary large datasets. \emph{Journal of Business & Economic Statistics}, 40(3), 1107-1122. DOI: \href{https://doi.org/10.1080/07350015.2021.1901719}{10.1080/07350015.2021.1901719}
+Barigozzi, M., & Trapani, L. (2022). Testing for common trends in nonstationary large datasets. \emph{Journal of Business & Economic Statistics}, 40(3), 1107-1122. DOI: \href{\doi.org/10.1080/07350015.2021.1901719}{10.1080/07350015.2021.1901719}
 }

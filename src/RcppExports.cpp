@@ -11,9 +11,9 @@ Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
 Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 #endif
 
-// BTtest
-NumericVector BTtest(const arma::mat& X, const int& r_max, const double& alpha, const bool& BT1);
-RcppExport SEXP _BTtest_BTtest(SEXP XSEXP, SEXP r_maxSEXP, SEXP alphaSEXP, SEXP BT1SEXP) {
+// BTtestRoutine
+NumericVector BTtestRoutine(const arma::mat& X, const int& r_max, const double& alpha, const bool& BT1);
+RcppExport SEXP _BTtest_BTtestRoutine(SEXP XSEXP, SEXP r_maxSEXP, SEXP alphaSEXP, SEXP BT1SEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -21,26 +21,26 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< const int& >::type r_max(r_maxSEXP);
     Rcpp::traits::input_parameter< const double& >::type alpha(alphaSEXP);
     Rcpp::traits::input_parameter< const bool& >::type BT1(BT1SEXP);
-    rcpp_result_gen = Rcpp::wrap(BTtest(X, r_max, alpha, BT1));
+    rcpp_result_gen = Rcpp::wrap(BTtestRoutine(X, r_max, alpha, BT1));
     return rcpp_result_gen;
 END_RCPP
 }
-// BaiIPC
-NumericVector BaiIPC(const arma::mat& X, const int& r_max);
-RcppExport SEXP _BTtest_BaiIPC(SEXP XSEXP, SEXP r_maxSEXP) {
+// BaiIPCRoutine
+NumericVector BaiIPCRoutine(const arma::mat& X, const int& r_max);
+RcppExport SEXP _BTtest_BaiIPCRoutine(SEXP XSEXP, SEXP r_maxSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const arma::mat& >::type X(XSEXP);
     Rcpp::traits::input_parameter< const int& >::type r_max(r_maxSEXP);
-    rcpp_result_gen = Rcpp::wrap(BaiIPC(X, r_max));
+    rcpp_result_gen = Rcpp::wrap(BaiIPCRoutine(X, r_max));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_BTtest_BTtest", (DL_FUNC) &_BTtest_BTtest, 4},
-    {"_BTtest_BaiIPC", (DL_FUNC) &_BTtest_BaiIPC, 2},
+    {"_BTtest_BTtestRoutine", (DL_FUNC) &_BTtest_BTtestRoutine, 4},
+    {"_BTtest_BaiIPCRoutine", (DL_FUNC) &_BTtest_BaiIPCRoutine, 2},
     {NULL, NULL, 0}
 };
 
