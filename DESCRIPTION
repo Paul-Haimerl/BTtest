@@ -1,6 +1,6 @@
 Package: BTtest
 Title: Estimate the Nmber of Factors in Large Nonstationary Datasets
-Version: 1.1
+Version: 0.9
 Authors@R: 
     person("Paul", "Haimerl", , "paul.haimerl@maastrichtuniversity.nl", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0003-3198-8317"))
