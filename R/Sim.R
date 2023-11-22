@@ -1,114 +1,119 @@
-#' Simulate a nonstationary panel with common trends according to sec. 5
+#' Simulate a nonstationary panel with common trends
 #'
-#' @description Simulate a data generating process as laid out in Barigozzi & Trapani (2022, sec. 5).
+#' @description Simulate a nonstationary panel as laid out in Barigozzi & Trapani ([2022](https://doi.org/10.1080/07350015.2021.1901719), sec. 5).
 #'
 #' @param N the number of cross-sectional units
-#' @param n.Periods the number of simulated time periods
-#' @param drift logical. If TRUE, a linear trend is included (corresponds to both d_1 and r_1)
-#' @param driftI1 logical. If TRUE, an I(1) factor moves around the linear trend. Else an I(0) factor (corresponds to d_2)
-#' @param r_I1 the total number of non zero-mean I(1) factors (corresponds to r_2 + r_1 * d_2)
-#' @param r_I0 the total number of non zero-mean I(0) factors (corresponds to r_3 + r_1 * (1 - d_2))
-#' @param return.factor logical. If TRUE, the factor matrix is returned. Else the simulated observations
+#' @param n_Periods the number of simulated time periods
+#' @param drift logical. If TRUE, a linear trend is included (corresponding to both d_1 and r_1)
+#' @param drift_I1 logical. If TRUE, an I(1) factor moves around the linear trend. Else an I(0) factor (corresponding to d_2)
+#' @param r_I1 the total number of non zero-mean I(1) factors (corresponding to r_2 + r_1 * d_2)
+#' @param r_I0 the total number of non zero-mean I(0) factors (corresponding to r_3 + r_1 * (1 - d_2))
+#' @param return_factor logical. If TRUE, the factor matrix is returned. Else the simulated observations
 #'
-#' @details For further details the construction of the DGP see Barigozzi & Trapani (2022, sec. 5).
+#' @details For further details the construction of the DGP see Barigozzi & Trapani ([2022](https://doi.org/10.1080/07350015.2021.1901719), sec. 5).
 #'
 #' @examples
-#' # Simulate a DGP containing a factor with a linear drift (r1 d1 = 1) and I(1) process (d2 = 1),
+#' # Simulate a panel containing a factor with a linear drift (r1 d1 = 1) and I(1) process (d2 = 1),
 #' # one zero-mean I(1) factor (r2 = 1) and two zero-mean I(0) factors (r3 = 2)
-#' X <- sim.DGP(N = 100, n.Periods = 200, drift = TRUE, driftI1 = TRUE, r_I1 = 2, r_I0 = 2)
+#' X <- sim_DGP(N = 100, n_Periods = 200, drift = TRUE, drift_I1 = TRUE, r_I1 = 2, r_I0 = 2)
 #'
-#' # Simulate a DGP containing only 3 common zero-mean I(0) factor (r1 = 0, r2 = 0, r3 = 3)
-#' X <- sim.DGP(N = 100, n.Periods = 200, drift = FALSE, driftI1 = TRUE, r_I1 = 0, r_I0 = 3)
-#' @references Matteo Barigozzi & Lorenzo Trapani (2022) Testing for Common Trends in Nonstationary Large Datasets, Journal of Businss & Economic Statistics, 40:3, 1107-1122, DOI: 10.1080/07350015.2021.1901719
+#' # Simulate a panel containing only 3 common zero-mean I(0) factor (r1 = 0, r2 = 0, r3 = 3)
+#' X <- sim_DGP(N = 100, n_Periods = 200, drift = FALSE, drift_I1 = TRUE, r_I1 = 0, r_I0 = 3)
+#' @references Barigozzi, M., & Trapani, L. (2022). Testing for common trends in nonstationary large datasets. *Journal of Business & Economic Statistics*, 40(3), 1107-1122. DOI: [10.1080/07350015.2021.1901719](https://doi.org/10.1080/07350015.2021.1901719)
 #'
-#' @return A (T x N) matrix of simulated observations. If return.factor == TRUE, a (N x r) matrix of factors.
+#' @return A T x N matrix of simulated observations. If `return_factor == TRUE`, a N x r matrix of factors.
 #'
 #' @export
 
-sim.DGP <- function(N = 100, n.Periods = 200, drift = TRUE, driftI1 = TRUE, r_I1 = 2, r_I0 = 1, return.factor = FALSE) {
-  set.seed(2)
-
+sim_DGP <- function(N = 100, n_Periods = 200, drift = TRUE, drift_I1 = TRUE, r_I1 = 2, r_I0 = 1, return_factor = FALSE) {
   #------------------------------#
   #### Preliminaries          ####
   #------------------------------#
 
-  Tt <- n.Periods
+  Tt <- n_Periods
   # For consistency with Barigozzi and Trapani (2021)
   d_1 <- r_1 <- as.numeric(drift)
   # Note that (r_1 == 1, d_1 == 0, d_2 == 1, r_2 == x) is observationally identical with (r_1 == 0, r_2 == x + 1) (same with d_2 == 0 and r_3)
   # As a consequence, I normalize r_1 == d_1 to save one extra (unnecessary) argument for the function
-  d_2 <- as.numeric(driftI1)
-  if (driftI1 & drift & r_I1 == 0) stop("Either set r_I1 > 0 or driftI1 == FALSE\n")
-  if (!driftI1 & drift & r_I0 == 0) stop("Either set r_I1 > 0 or driftI1 == FALSE\n")
+  d_2 <- as.numeric(drift_I1)
+  if (drift_I1 & drift & r_I1 == 0) stop("Either set r_I1 > 0 or drift_I1 == FALSE\n")
+  if (!drift_I1 & drift & r_I0 == 0) stop("Either set r_I1 > 0 or drift_I1 == FALSE\n")
   r_2 <- r_I1 - r_1 * d_2
   r_3 <- r_I0 - r_1 * (1 - d_2)
   r <- r_1 + r_2 + r_3
 
-  #------------------------------#
-  #### Factor loadings        ####
-  #------------------------------#
+  if (r > 0) {
+    #------------------------------#
+    #### Factor loadings        ####
+    #------------------------------#
 
-  Lambda <- simLambda(r = r, N = N)
+    Lambda <- simLambda(r = r, N = N)
 
-  #------------------------------#
-  #### Factors                ####
-  #------------------------------#
+    #------------------------------#
+    #### Factors                ####
+    #------------------------------#
 
-  # Generate the I(1) factors according to random walks with serially correlated unit variances
-  I1_fmat <- sapply(1:r_I1, function(x, Tt) simRW(Tt), Tt = Tt)
-  if (r_I1 == 0) {
-    I1_fmat <- NULL
-    F2_indx <- NULL
-  } else {
-    F2_indx <- 1:r_I1
-  }
-
-  # Generate the I(0) factors according to some stationary ARMA process with unit variances
-  I0_fmat <- sapply(1:r_I0, function(x, Tt) simARMA(Tt), Tt = Tt)
-  if (r_I0 == 0) {
-    I0_fmat <- NULL
-    F3_indx <- NULL
-  } else {
-    F3_indx <- (1 + r_I1):(r_I1 + r_I0)
-  }
-
-  # Generate a linear trend with slope 1
-  if (drift) {
-    trend <- 1:Tt
-    # Attach the trend to one of the factors and order the factor matrix
-    if (driftI1) {
-      F_1 <- I1_fmat[, 1] + trend
-      I1_fmat <- as.matrix(I1_fmat[, -1])
-      F2_indx <- F2_indx[-1]
+    # Generate the I(1) factors according to random walks with serially correlated errors
+    F2_mat <- sapply(1:r_2, function(x, Tt) simRW(Tt), Tt = Tt)
+    if (r_2 == 0) {
+      F2_mat <- NULL
+      F2_indx <- NULL
     } else {
-      F_1 <- I0_fmat[, 1] + trend
-      I0_fmat <- as.matrix(I0_fmat[, -1])
-      F2_indx <- F2_indx + 1
-      F3_indx <- F3_indx[-1]
+      F2_indx <- (1 + r_1):(r_1 + r_2)
     }
-  }
 
-  # Rescale and balance the factors
-  # If present, use F1 as the baseline, else the first F_2 factor
-  if (drift) {
-    norm <- sum((as.matrix(diff(F_1)) %*% t(Lambda[, 1]))^2)
-    # Rescale F_2
-    F_2 <- rescaleFactors(Fmat = I1_fmat, Lambda = Lambda, norm = norm, indx = F2_indx, fd = TRUE)
-    # Rescale F_3
-    F_3 <- rescaleFactors(Fmat = I0_fmat, Lambda = Lambda, norm = norm, indx = F3_indx, fd = FALSE)
-  } else if (!is.null(F2_indx)) {
-    F_1 <- NULL
-    F_2 <- I1_fmat
-    norm <- sum((as.matrix(diff(I1_fmat)) %*% t(Lambda[, F2_indx]))^2)
-    # Rescale F_3
-    F_3 <- rescaleFactors(Fmat = I0_fmat, Lambda = Lambda, norm = norm, indx = F3_indx, fd = FALSE)
+    # Generate the I(0) factors according to some stationary ARMA process with unit variances
+    I0_fmat <- sapply(1:r_I0, function(x, Tt) simARMA(Tt), Tt = Tt)
+    if (r_I0 == 0) {
+      I0_fmat <- NULL
+      F3_indx <- NULL
+    } else {
+      F3_indx <- (1 + r_I1):(r_I1 + r_I0)
+    }
+
+    # Generate a linear trend with slope 1
+    if (drift) {
+      trend <- 1:Tt
+      # Attach the trend to one of the factors and order the factor matrix
+      if (drift_I1) {
+        # In case of d_2 == 1, draw a RW without serially correlated errors
+        f_1 <- simRW(Tt, rholimits = c(0, 0))
+        F_1 <- f_1 + trend
+      } else {
+        F_1 <- I0_fmat[, 1] + trend
+        I0_fmat <- as.matrix(I0_fmat[, -1])
+        F3_indx <- F3_indx[-1]
+        if (length(F3_indx) == 0) F3_indx <- NULL
+      }
+    }
+
+    # Rescale and balance the factors
+    # If present, use F1 as the baseline, else the first F_2 factor
+    if (drift) {
+      norm <- sum((as.matrix(diff(F_1)) %*% t(Lambda[, 1]))^2)
+      # Rescale F_2
+      F_2 <- rescaleFactors(Fmat = F2_mat, Lambda = Lambda, norm = norm, indx = F2_indx, fd = TRUE)
+      # Rescale F_3
+      F_3 <- rescaleFactors(Fmat = I0_fmat, Lambda = Lambda, norm = norm, indx = F3_indx, fd = FALSE)
+    } else if (!is.null(F2_indx)) {
+      F_1 <- NULL
+      F_2 <- F2_mat
+      norm <- sum((as.matrix(diff(F2_mat)) %*% t(Lambda[, F2_indx]))^2)
+      # Rescale F_3
+      F_3 <- rescaleFactors(Fmat = I0_fmat, Lambda = Lambda, norm = norm, indx = F3_indx, fd = FALSE)
+    } else {
+      F_1 <- NULL
+      F_2 <- NULL
+      F_3 <- I0_fmat
+    }
+    Fmat <- cbind(F_1, F_2, F_3)
   } else {
-    F_1 <- NULL
-    F_2 <- NULL
-    F_3 <- I0_fmat
+    Fmat <- NULL
+    Lambda <- NULL
   }
-  Fmat <- cbind(F_1, F_2, F_3)
-  if (return.factor) return(Fmat)
+  if (return_factor) {
+    return(Fmat)
+  }
 
   #------------------------------#
   #### Cross-sectional errors ####
@@ -120,7 +125,11 @@ sim.DGP <- function(N = 100, n.Periods = 200, drift = TRUE, driftI1 = TRUE, r_I1
   theta <- setsignal2noise(U = U, Lambda = Lambda, Fmat = Fmat, drift = drift, F2_indx = F2_indx, F3_indx = F3_indx)
 
   # Compute the final observation
-  X <- Fmat %*% t(Lambda) + sqrt(theta) * U
+  if (!is.null(Fmat)) {
+    X <- Fmat %*% t(Lambda) + sqrt(theta) * U
+  } else {
+    X <- sqrt(theta) * U
+  }
   return(X)
 }
 
@@ -138,6 +147,9 @@ sim.DGP <- function(N = 100, n.Periods = 200, drift = TRUE, driftI1 = TRUE, r_I1
 #'
 
 setsignal2noise <- function(U, Lambda, Fmat, drift, F2_indx, F3_indx) {
+  if (is.null(Fmat)) {
+    return(1)
+  }
   denom <- sum(diff(U)^2)
   if (drift) {
     F1_indx <- 1
@@ -253,15 +265,16 @@ simRW <- function(Tt, nBurnin = 1, rholimits = c(.4, .8), sd = 1) {
 #' @param Tt number of simulated time periods
 #' @param pqmax vector holding upper bounds for the AR and MA lag order
 #' @param sd of the process innovations
+#' @param coef_limits vector holding upper and lower bounds for the coefficients
 #'
 #' @return vector with the simulated factor
 #'
 
-simARMA <- function(Tt, pqmax = c(1, 0), sd = 1) {
+simARMA <- function(Tt, pqmax = c(1, 0), sd = 1, coef_limits = c(-.5, .5)) {
   # Pick the lag order
   pq <- c(sample(1:pqmax[1], 1), sample(1:pqmax[2], 1))
   # Draw the ar and ma polynomials
-  coef <- simARMACoef(pq = pq)
+  coef <- simARMACoef(pq = pq, limits = coef_limits)
   # Construct the ARMA process
   arma <- as.numeric(stats::arima.sim(list(order = c(pq[1], 0, pq[2]), ar = coef$ar, ma = coef$ma), sd = sd, n = Tt))
   return(arma)
@@ -276,7 +289,8 @@ simARMA <- function(Tt, pqmax = c(1, 0), sd = 1) {
 #' @return vector with stationary simulated coefficients
 #'
 
-simARMACoef <- function(pq, limits = c(-.5, .5)) {
+simARMACoef <- function(pq, limits) {
+  if (is.null(limits)) limits <- c(-1, 1)
   # AR
   if (pq[1] == 0) {
     ar <- NULL
