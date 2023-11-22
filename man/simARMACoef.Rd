@@ -4,7 +4,7 @@
 \alias{simARMACoef}
 \title{Simulates the AR and MA coefficients}
 \usage{
-simARMACoef(pq, limits = c(-0.5, 0.5))
+simARMACoef(pq, limits)
 }
 \arguments{
 \item{pq}{vector holding the lag orders}

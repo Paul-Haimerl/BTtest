@@ -1,3 +1,3 @@
-# BTtest 0.9
+# BTtest 1.0
 
 * Initial CRAN submission.

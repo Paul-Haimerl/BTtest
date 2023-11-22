@@ -4,7 +4,7 @@
 \alias{simARMA}
 \title{Simulates zero-mean I(0) factors according to Eq. 33 with the extension to arbitrary stationary ARMA process}
 \usage{
-simARMA(Tt, pqmax = c(1, 0), sd = 1)
+simARMA(Tt, pqmax = c(1, 0), sd = 1, coef_limits = c(-0.5, 0.5))
 }
 \arguments{
 \item{Tt}{number of simulated time periods}
@@ -12,6 +12,8 @@ simARMA(Tt, pqmax = c(1, 0), sd = 1)
 \item{pqmax}{vector holding upper bounds for the AR and MA lag order}
 
 \item{sd}{of the process innovations}
+
+\item{coef_limits}{vector holding upper and lower bounds for the coefficients}
 }
 \value{
 vector with the simulated factor
