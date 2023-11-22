@@ -1,13 +1,13 @@
-#' Barigozzi & Trapani ([2022](\doi{10.1080/07350015.2021.1901719}))  test
+#' Barigozzi & Trapani ([2022](https://doi.org/10.1080/07350015.2021.1901719))  Test
 #'
-#' @description Runs the testing routine proposed in Barigozzi & Trapani ([2022](\doi{10.1080/07350015.2021.1901719})) to estimate the number and types of common trends in a nonstationary panel.
+#' @description Runs the testing routine proposed in Barigozzi & Trapani ([2022](https://doi.org/10.1080/07350015.2021.1901719)) to estimate the number and types of common trends in a nonstationary panel.
 #'
-#' @param X a (T x N) matrix of observations
-#' @param r_max the maximum number of factors to consider
-#' @param alpha the significance level
-#' @param BT1 logical. If TRUE, a more conservative eigenvalue rescaling scheme is used
+#' @param X a (\emph{T x N}) matrix of observations.
+#' @param r_max the maximum number of factors to consider.
+#' @param alpha the significance level.
+#' @param BT1 logical. If \code{TRUE}, a more conservative eigenvalue rescaling scheme is used. Default is \code{TRUE}.
 #'
-#' @details For details on the testing procedure I refer to Barigozzi & Trapani ([2022](\doi{10.1080/07350015.2021.1901719}), sec. 4).
+#' @details For details on the testing procedure I refer to Barigozzi & Trapani ([2022](https://doi.org/10.1080/07350015.2021.1901719), sec. 4).
 #'
 #' @examples
 #' # Simulate a nonstationary panel
@@ -18,7 +18,7 @@
 #' BTtest(X = X, r_max = 10, alpha = 0.05, BT1 = TRUE)
 #' @references Barigozzi, M., & Trapani, L. (2022). Testing for common trends in nonstationary large datasets. *Journal of Business & Economic Statistics*, 40(3), 1107-1122. DOI: \doi{10.1080/07350015.2021.1901719}
 #'
-#' @return A vector with the estimated number of (1) factors with a linear trend (2) zero-mean I(1) factors and (3) zero-mean I(0) factors.
+#' @return A vector with the estimated number of (i) factors with a linear trend (r_1), (ii) zero-mean \emph{I(1)} factors  (r_2) and (3) zero-mean \emph{I(0)} factors (r_3).
 #'
 #' @export
 BTtest <- function(X, r_max = 10, alpha = 0.05, BT1 = TRUE){
@@ -26,14 +26,14 @@ BTtest <- function(X, r_max = 10, alpha = 0.05, BT1 = TRUE){
 }
 
 
-#' Bai ([2004](\doi{10.1016/j.jeconom.2003.10.022})) IPC
+#' Bai ([2004](https://doi.org/10.1016/j.jeconom.2003.10.022)) IPC
 #'
-#' @description Calculates the Integrated Panel Criterions to estimate the number of common trends in a nonstationary panel as proposed in Bai ([2004](\doi{10.1016/j.jeconom.2003.10.022})).
+#' @description Calculates the Integrated Panel Criterions (IPC) to estimate the number of common trends in a nonstationary panel as proposed in Bai ([2004](https://doi.org/10.1016/j.jeconom.2003.10.022)).
 #'
-#' @param X a (T x N) matrix of observations
-#' @param r_max the maximum number of factors to consider
+#' @param X a (T x N) matrix of observations.
+#' @param r_max the maximum number of factors to consider.
 #'
-#' @details For further details on the criterion, I refer to Bai ([2004](\doi{10.1016/j.jeconom.2003.10.022}), sec. 3).
+#' @details For further details on the criterion, I refer to Bai ([2004](https://doi.org/10.1016/j.jeconom.2003.10.022), sec. 3).
 #'
 #' @examples
 #' # Simulate a nonstationary panel

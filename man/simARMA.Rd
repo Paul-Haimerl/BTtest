@@ -2,7 +2,7 @@
 % Please edit documentation in R/Sim.R
 \name{simARMA}
 \alias{simARMA}
-\title{Simulates zero-mean I(0) factors according to Eq. 33 with the extension to arbitrary stationary ARMA process}
+\title{Simulates zero-mean \emph{I(0)} factors according to Eq. 33 with the extension to arbitrary stationary ARMA process}
 \usage{
 simARMA(Tt, pqmax = c(1, 0), sd = 1, coef_limits = c(-0.5, 0.5))
 }
@@ -19,5 +19,5 @@ simARMA(Tt, pqmax = c(1, 0), sd = 1, coef_limits = c(-0.5, 0.5))
 vector with the simulated factor
 }
 \description{
-Simulates zero-mean I(0) factors according to Eq. 33 with the extension to arbitrary stationary ARMA process
+Simulates zero-mean \emph{I(0)} factors according to Eq. 33 with the extension to arbitrary stationary ARMA process
 }

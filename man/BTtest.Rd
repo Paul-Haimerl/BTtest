@@ -2,27 +2,27 @@
 % Please edit documentation in R/BTtest.R
 \name{BTtest}
 \alias{BTtest}
-\title{Barigozzi & Trapani (\href{\doi{10.1080/07350015.2021.1901719}}{2022})  test}
+\title{Barigozzi & Trapani (\href{https://doi.org/10.1080/07350015.2021.1901719}{2022})  Test}
 \usage{
 BTtest(X, r_max = 10, alpha = 0.05, BT1 = TRUE)
 }
 \arguments{
-\item{X}{a (T x N) matrix of observations}
+\item{X}{a (\emph{T x N}) matrix of observations.}
 
-\item{r_max}{the maximum number of factors to consider}
+\item{r_max}{the maximum number of factors to consider.}
 
-\item{alpha}{the significance level}
+\item{alpha}{the significance level.}
 
-\item{BT1}{logical. If TRUE, a more conservative eigenvalue rescaling scheme is used}
+\item{BT1}{logical. If \code{TRUE}, a more conservative eigenvalue rescaling scheme is used. Default is \code{TRUE}.}
 }
 \value{
-A vector with the estimated number of (1) factors with a linear trend (2) zero-mean I(1) factors and (3) zero-mean I(0) factors.
+A vector with the estimated number of (i) factors with a linear trend (r_1), (ii) zero-mean \emph{I(1)} factors  (r_2) and (3) zero-mean \emph{I(0)} factors (r_3).
 }
 \description{
-Runs the testing routine proposed in Barigozzi & Trapani (\href{\doi{10.1080/07350015.2021.1901719}}{2022}) to estimate the number and types of common trends in a nonstationary panel.
+Runs the testing routine proposed in Barigozzi & Trapani (\href{https://doi.org/10.1080/07350015.2021.1901719}{2022}) to estimate the number and types of common trends in a nonstationary panel.
 }
 \details{
-For details on the testing procedure I refer to Barigozzi & Trapani (\href{\doi{10.1080/07350015.2021.1901719}}{2022}, sec. 4).
+For details on the testing procedure I refer to Barigozzi & Trapani (\href{https://doi.org/10.1080/07350015.2021.1901719}{2022}, sec. 4).
 }
 \examples{
 # Simulate a nonstationary panel

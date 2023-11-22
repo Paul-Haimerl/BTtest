@@ -2,23 +2,23 @@
 % Please edit documentation in R/BTtest.R
 \name{BaiIPC}
 \alias{BaiIPC}
-\title{Bai (\href{\doi{10.1016/j.jeconom.2003.10.022}}{2004}) IPC}
+\title{Bai (\href{https://doi.org/10.1016/j.jeconom.2003.10.022}{2004}) IPC}
 \usage{
 BaiIPC(X, r_max = 10)
 }
 \arguments{
-\item{X}{a (T x N) matrix of observations}
+\item{X}{a (T x N) matrix of observations.}
 
-\item{r_max}{the maximum number of factors to consider}
+\item{r_max}{the maximum number of factors to consider.}
 }
 \value{
 A vector of the estimated number of factors per criterion.
 }
 \description{
-Calculates the Integrated Panel Criterions to estimate the number of common trends in a nonstationary panel as proposed in Bai (\href{\doi{10.1016/j.jeconom.2003.10.022}}{2004}).
+Calculates the Integrated Panel Criterions (IPC) to estimate the number of common trends in a nonstationary panel as proposed in Bai (\href{https://doi.org/10.1016/j.jeconom.2003.10.022}{2004}).
 }
 \details{
-For further details on the criterion, I refer to Bai (\href{\doi{10.1016/j.jeconom.2003.10.022}}{2004}, sec. 3).
+For further details on the criterion, I refer to Bai (\href{https://doi.org/10.1016/j.jeconom.2003.10.022}{2004}, sec. 3).
 }
 \examples{
 # Simulate a nonstationary panel
