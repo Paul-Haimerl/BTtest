@@ -91,14 +91,14 @@ float randomTest(const arma::mat &Phi, const int &indx, const int &p, const int 
 }
 
 
-int randomTestWrapper(const arma::mat &Phi, const int &indx, const int &r_max, const float &sig)
+int randomTestWrapper(const arma::mat &Phi, const int &indx, const int &r_min, const int &r_max, const float &sig)
 {
   int N = Phi.n_rows;
-  int R_prime = fmax(floor(N / 3.0), 100);
+  int R_tilde = fmax(floor(N / 3.0), 100);
   int R;
-  int r_hat = 0;
+  int r_hat = r_min;
   // Iteratively test the different eigenvalues
-  for (int r = 0; r < r_max; r++)
+  for (int r = r_min; r < r_max; r++)
   {
     if (r == 0)
     {
@@ -106,7 +106,7 @@ int randomTestWrapper(const arma::mat &Phi, const int &indx, const int &r_max, c
     }
     else
     {
-      R = R_prime;
+      R = R_tilde;
     }
     float pvalue = randomTest(Phi, indx, r, R);
     if (pvalue > sig)
@@ -153,25 +153,29 @@ NumericVector BTtestRoutine(const arma::mat &X, const int &r_max, const double &
   // Tests for r_1, r_star and r  //
   //------------------------------//
 
-  arma::vec r_hat = arma::zeros(3);
+  arma::vec r_hat = arma::zeros(4);
+  int r_max_tilde, r_min;
 
-  for (int i = 0; i < 3; i++)
+  for (int i = 1; i < 4; i++)
   {
-    r_hat(i) = randomTestWrapper(Phi, i, r_max, sig);
-  }
-
-  if (r_hat(0) >= 1)
-  {
-    r_hat(0) = 1;
+    // Only one factor with a linear trend can be identified
+    if (i == 1){
+      r_max_tilde = 1;
+    } else {
+      r_max_tilde = r_max;
+    }
+    // Exploit some test iterations that are already computed in prev. runs
+    r_min = r_hat(i - 1);
+    r_hat(i) = randomTestWrapper(Phi, i - 1, r_min, r_max_tilde, sig);
   }
 
   //------------------------------//
   // Individual factor types      //
   //------------------------------//
 
-  int r_1_hat = r_hat(0);
-  int r_2_hat = r_hat(1) - r_1_hat;
-  int r_3_hat = r_hat(2) - r_hat(1);
+  int r_1_hat = r_hat(1);
+  int r_2_hat = r_hat(2) - r_1_hat;
+  int r_3_hat = r_hat(3) - r_hat(2);
 
   NumericVector output = NumericVector::create(
     Named("r_1_hat") = r_1_hat,
