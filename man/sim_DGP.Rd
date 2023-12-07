@@ -19,13 +19,13 @@ sim_DGP(
 
 \item{n_Periods}{the number of simulated time periods.}
 
-\item{drift}{logical. If \code{TRUE}, a linear trend is included (corresponding to both d_1 and r_1).}
+\item{drift}{logical. If \code{TRUE}, a linear trend is included (corresponding to both \emph{d_1 = 1} and \emph{r_1 = 1}).}
 
-\item{drift_I1}{logical. If \code{TRUE}, an \emph{I(1)} factor moves around the linear trend. Else an \emph{I(0)} factor (corresponding to d_2).}
+\item{drift_I1}{logical. If \code{TRUE}, an \emph{I(1)} factor moves around the linear trend. Else an \emph{I(0)} factor (corresponding to \emph{d_2 = 1}).}
 
-\item{r_I1}{the total number of non zero-mean \emph{I(1)} factors (corresponding to r_2 + r_1 * d_2).}
+\item{r_I1}{the total number of non zero-mean \emph{I(1)} factors (corresponding to \emph{r_2 + r_1 * d_2}).}
 
-\item{r_I0}{the total number of non zero-mean \emph{I(0)} factors (corresponding to r_3 + r_1 * (1 - d_2)).}
+\item{r_I0}{the total number of non zero-mean \emph{I(0)} factors (corresponding to \emph{r_3 + r_1 * (1 - d_2)}).}
 
 \item{return_factor}{logical. If \code{TRUE}, the factor matrix is returned. Else the simulated observations. Default is \code{FALSE}.}
 }
@@ -33,10 +33,10 @@ sim_DGP(
 A (\emph{T x N}) matrix of simulated observations. If \code{return_factor = TRUE}, a (\emph{N x r}) matrix of factors.
 }
 \description{
-Simulate a nonstationary panel as laid out in Barigozzi & Trapani (\href{https://doi.org/10.1080/07350015.2021.1901719}{2022}), sec. 5).
+Simulate a nonstationary panel as laid out in Barigozzi & Trapani (2022, sec. 5).
 }
 \details{
-For further details the construction of the DGP see Barigozzi & Trapani (\href{https://doi.org/10.1080/07350015.2021.1901719}{2022}, sec. 5).
+For further details on the construction of the DGP, see Barigozzi & Trapani (2022, sec. 5).
 }
 \examples{
 # Simulate a panel containing a factor with a linear drift (r_1 = d_1 = 1) and I(1) process
@@ -47,5 +47,8 @@ X <- sim_DGP(N = 100, n_Periods = 200, drift = TRUE, drift_I1 = TRUE, r_I1 = 2, 
 X <- sim_DGP(N = 100, n_Periods = 200, drift = FALSE, drift_I1 = TRUE, r_I1 = 0, r_I0 = 3)
 }
 \references{
-Barigozzi, M., & Trapani, L. (2022). Testing for common trends in nonstationary large datasets. \emph{Journal of Business & Economic Statistics}, 40(3), 1107-1122. DOI: \doi{10.1080/07350015.2021.1901719}
+Barigozzi, M., & Trapani, L. (2022). Testing for common trends in nonstationary large datasets. \emph{Journal of Business & Economic Statistics}, 40(3), 1107-1122. \doi{10.1080/07350015.2021.1901719}
+}
+\author{
+Paul Haimerl
 }

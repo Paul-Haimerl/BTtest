@@ -1,16 +1,16 @@
 #' Simulate a Nonstationary Panel With Common Trends
 #'
-#' @description Simulate a nonstationary panel as laid out in Barigozzi & Trapani ([2022](https://doi.org/10.1080/07350015.2021.1901719)), sec. 5).
+#' @description Simulate a nonstationary panel as laid out in Barigozzi & Trapani (2022, sec. 5).
 #'
 #' @param N the number of cross-sectional units.
 #' @param n_Periods the number of simulated time periods.
-#' @param drift logical. If \code{TRUE}, a linear trend is included (corresponding to both d_1 and r_1).
-#' @param drift_I1 logical. If \code{TRUE}, an \emph{I(1)} factor moves around the linear trend. Else an \emph{I(0)} factor (corresponding to d_2).
-#' @param r_I1 the total number of non zero-mean \emph{I(1)} factors (corresponding to r_2 + r_1 * d_2).
-#' @param r_I0 the total number of non zero-mean \emph{I(0)} factors (corresponding to r_3 + r_1 * (1 - d_2)).
+#' @param drift logical. If \code{TRUE}, a linear trend is included (corresponding to both \emph{d_1 = 1} and \emph{r_1 = 1}).
+#' @param drift_I1 logical. If \code{TRUE}, an \emph{I(1)} factor moves around the linear trend. Else an \emph{I(0)} factor (corresponding to \emph{d_2 = 1}).
+#' @param r_I1 the total number of non zero-mean \emph{I(1)} factors (corresponding to \emph{r_2 + r_1 * d_2}).
+#' @param r_I0 the total number of non zero-mean \emph{I(0)} factors (corresponding to \emph{r_3 + r_1 * (1 - d_2)}).
 #' @param return_factor logical. If \code{TRUE}, the factor matrix is returned. Else the simulated observations. Default is \code{FALSE}.
 #'
-#' @details For further details the construction of the DGP see Barigozzi & Trapani ([2022](https://doi.org/10.1080/07350015.2021.1901719), sec. 5).
+#' @details For further details on the construction of the DGP, see Barigozzi & Trapani (2022, sec. 5).
 #'
 #' @examples
 #' # Simulate a panel containing a factor with a linear drift (r_1 = d_1 = 1) and I(1) process
@@ -19,7 +19,9 @@
 #'
 #' # Simulate a panel containing only 3 common zero-mean I(0) factor (r_1 = 0, r_2 = 0, r_3 = 3)
 #' X <- sim_DGP(N = 100, n_Periods = 200, drift = FALSE, drift_I1 = TRUE, r_I1 = 0, r_I0 = 3)
-#' @references Barigozzi, M., & Trapani, L. (2022). Testing for common trends in nonstationary large datasets. *Journal of Business & Economic Statistics*, 40(3), 1107-1122. DOI: \doi{10.1080/07350015.2021.1901719}
+#' @references Barigozzi, M., & Trapani, L. (2022). Testing for common trends in nonstationary large datasets. *Journal of Business & Economic Statistics*, 40(3), 1107-1122. \doi{10.1080/07350015.2021.1901719}
+#'
+#' @author Paul Haimerl
 #'
 #' @return A (\emph{T x N}) matrix of simulated observations. If \code{return_factor = TRUE}, a (\emph{N x r}) matrix of factors.
 #'
@@ -134,17 +136,16 @@ sim_DGP <- function(N = 100, n_Periods = 200, drift = TRUE, drift_I1 = TRUE, r_I
 }
 
 
-#' Calculate signal to noise ratio
-#'
-#' @param U (T x N) matrix holding cross-sectional errors
-#' @param Lambda (N x r) matrix holding loadings
-#' @param Fmat (T x r) matrix holding the factors
-#' @param drift logical. If TRUE, a linear trend is included (corresponds to both d_1 and r_1)
-#' @param F2_indx vector indicating the columns of f2 factors
-#' @param F3_indx vector indicating the columns of f3 factors
-#'
-#' @return scaling factor governing the signal to noise ratio
-#'
+# Calculate signal to noise ratio
+#
+# @param U (T x N) matrix holding cross-sectional errors
+# @param Lambda (N x r) matrix holding loadings
+# @param Fmat (T x r) matrix holding the factors
+# @param drift logical. If TRUE, a linear trend is included (corresponds to both d_1 and r_1)
+# @param F2_indx vector indicating the columns of f2 factors
+# @param F3_indx vector indicating the columns of f3 factors
+#
+# @return scaling factor governing the signal to noise ratio
 
 setsignal2noise <- function(U, Lambda, Fmat, drift, F2_indx, F3_indx) {
   if (is.null(Fmat)) {
@@ -166,16 +167,15 @@ setsignal2noise <- function(U, Lambda, Fmat, drift, F2_indx, F3_indx) {
 }
 
 
-#' Calibrates the factors among each other
-#'
-#' @param Fmat (T x r_i) matrix holding the factors for i = 1, 2, 3
-#' @param Lambda (N x r) matrix holding loadings
-#' @param norm target sum of squares
-#' @param indx vector indicating the columns of relevant factors
-#' @param fd logical. If TRUE, the first differences of factors are used
-#'
-#' @return (T x r_i) matrix with calibrated factors
-#'
+# Calibrates the factors among each other
+#
+# @param Fmat (T x r_i) matrix holding the factors for i = 1, 2, 3
+# @param Lambda (N x r) matrix holding loadings
+# @param norm target sum of squares
+# @param indx vector indicating the columns of relevant factors
+# @param fd logical. If TRUE, the first differences of factors are used
+#
+# @return (T x r_i) matrix with calibrated factors
 
 rescaleFactors <- function(Fmat, Lambda, norm, indx, fd) {
   if (is.null(dim(Fmat))) {
@@ -193,16 +193,15 @@ rescaleFactors <- function(Fmat, Lambda, norm, indx, fd) {
 }
 
 
-#' Draws cross-sectional errors according to Eq. 34
-#'
-#' @param N number of cross-sectional units
-#' @param Tt number of simulated time periods
-#' @param a parameter governing the serial correlation
-#' @param b parameter governing the cross-sectional correlation
-#' @param C parameter governing the extent of the cross-sectional correlation
-#'
-#' @return (T x N) matrix of cross-sectional errors
-#'
+# Draws cross-sectional errors according to Eq. 34
+#
+# @param N number of cross-sectional units
+# @param Tt number of simulated time periods
+# @param a parameter governing the serial correlation
+# @param b parameter governing the cross-sectional correlation
+# @param C parameter governing the extent of the cross-sectional correlation
+#
+# @return (T x N) matrix of cross-sectional errors
 
 simCrossSecErr <- function(Tt, N, a = .5, b = .5, C = min(floor(N / 20), 10)) {
   V <- matrix(stats::rnorm(Tt * N), nrow = Tt)
@@ -218,13 +217,12 @@ simCrossSecErr <- function(Tt, N, a = .5, b = .5, C = min(floor(N / 20), 10)) {
 }
 
 
-#' Draws factor loadings in compliance with Ass. 4
-#'
-#' @param r bumber of factors to simulate
-#' @param N bumber of cross-sectional units
-#'
-#' @return (N x r) matrix of loadings
-#'
+# Draws factor loadings in compliance with Ass. 4
+#
+# @param r bumber of factors to simulate
+# @param N bumber of cross-sectional units
+#
+# @return (N x r) matrix of loadings
 
 simLambda <- function(r, N) {
   A <- matrix(stats::rnorm(r * N), ncol = r)
@@ -237,14 +235,13 @@ simLambda <- function(r, N) {
 }
 
 
-#' Simulates zero-mean I(1) factors according to Eq. 32
-#'
-#' @param Tt number of simulated time periods
-#' @param nBurnin number of burn-in periods for the process
-#' @param rholimits vector holding upper and lower bounds for the serial correlation parameter
-#' @param sd of the process innovations
-#' @return vector with the simulated factor
-#'
+# Simulates zero-mean I(1) factors according to Eq. 32
+#
+# @param Tt number of simulated time periods
+# @param nBurnin number of burn-in periods for the process
+# @param rholimits vector holding upper and lower bounds for the serial correlation parameter
+# @param sd of the process innovations
+# @return vector with the simulated factor
 
 simRW <- function(Tt, nBurnin = 1, rholimits = c(.4, .8), sd = 1) {
   nBurnin <- max(1, nBurnin)
@@ -260,15 +257,14 @@ simRW <- function(Tt, nBurnin = 1, rholimits = c(.4, .8), sd = 1) {
 }
 
 
-#' Simulates zero-mean \emph{I(0)} factors according to Eq. 33 with the extension to arbitrary stationary ARMA process
-#'
-#' @param Tt number of simulated time periods
-#' @param pqmax vector holding upper bounds for the AR and MA lag order
-#' @param sd of the process innovations
-#' @param coef_limits vector holding upper and lower bounds for the coefficients
-#'
-#' @return vector with the simulated factor
-#'
+# Simulates zero-mean \emph{I(0)} factors according to Eq. 33 with the extension to arbitrary stationary ARMA process
+#
+# @param Tt number of simulated time periods
+# @param pqmax vector holding upper bounds for the AR and MA lag order
+# @param sd of the process innovations
+# @param coef_limits vector holding upper and lower bounds for the coefficients
+#
+# @return vector with the simulated factor
 
 simARMA <- function(Tt, pqmax = c(1, 0), sd = 1, coef_limits = c(-.5, .5)) {
   # Pick the lag order
@@ -281,13 +277,12 @@ simARMA <- function(Tt, pqmax = c(1, 0), sd = 1, coef_limits = c(-.5, .5)) {
 }
 
 
-#' Simulates the AR and MA coefficients
-#'
-#' @param pq vector holding the lag orders
-#' @param limits vector holding upper and lower bounds for the coefficients
-#'
-#' @return vector with stationary simulated coefficients
-#'
+# Simulates the AR and MA coefficients
+#
+# @param pq vector holding the lag orders
+# @param limits vector holding upper and lower bounds for the coefficients
+#
+# @return vector with stationary simulated coefficients
 
 simARMACoef <- function(pq, limits) {
   if (is.null(limits)) limits <- c(-1, 1)

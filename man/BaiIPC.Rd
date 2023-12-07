@@ -2,7 +2,7 @@
 % Please edit documentation in R/BTtest.R
 \name{BaiIPC}
 \alias{BaiIPC}
-\title{Bai (\href{https://doi.org/10.1016/j.jeconom.2003.10.022}{2004}) IPC}
+\title{Bai (2004) IPC}
 \usage{
 BaiIPC(X, r_max = 10)
 }
@@ -12,13 +12,13 @@ BaiIPC(X, r_max = 10)
 \item{r_max}{the maximum number of factors to consider.}
 }
 \value{
-A vector of the estimated number of factors per criterion.
+A vector of the estimated number of factors for each of the three criterions.
 }
 \description{
-Calculates the Integrated Panel Criterions (IPC) to estimate the number of common trends in a nonstationary panel as proposed in Bai (\href{https://doi.org/10.1016/j.jeconom.2003.10.022}{2004}).
+Calculates the Integrated Panel Criterions (IPC) to estimate the number of common trends in a nonstationary panel as proposed by Bai (2004).
 }
 \details{
-For further details on the criterion, I refer to Bai (\href{https://doi.org/10.1016/j.jeconom.2003.10.022}{2004}, sec. 3).
+For further details on the criterion, I refer to Bai (2004, sec. 3).
 }
 \examples{
 # Simulate a nonstationary panel
@@ -28,5 +28,8 @@ X <- sim_DGP(N = 100, n_Periods = 200)
 BaiIPC(X = X, r_max = 10)
 }
 \references{
-Bai, J. (2004). Estimating cross-section common stochastic trends in nonstationary panel data. \emph{Journal of Econometrics}, 122(1), 137-183. DOI: \doi{10.1016/j.jeconom.2003.10.022}
+Bai, J. (2004). Estimating cross-section common stochastic trends in nonstationary panel data. \emph{Journal of Econometrics}, 122(1), 137-183. \doi{10.1016/j.jeconom.2003.10.022}
+}
+\author{
+Paul Haimerl
 }

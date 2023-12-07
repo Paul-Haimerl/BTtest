@@ -2,7 +2,7 @@
 % Please edit documentation in R/BTtest.R
 \name{BTtest}
 \alias{BTtest}
-\title{Barigozzi & Trapani (\href{https://doi.org/10.1080/07350015.2021.1901719}{2022})  Test}
+\title{Barigozzi & Trapani (2022)  Test}
 \usage{
 BTtest(X, r_max = 10, alpha = 0.05, BT1 = TRUE)
 }
@@ -13,16 +13,16 @@ BTtest(X, r_max = 10, alpha = 0.05, BT1 = TRUE)
 
 \item{alpha}{the significance level.}
 
-\item{BT1}{logical. If \code{TRUE}, a more conservative eigenvalue rescaling scheme is used. Default is \code{TRUE}.}
+\item{BT1}{logical. If \code{TRUE}, a less conservative eigenvalue rescaling scheme is used. Default is \code{TRUE}.}
 }
 \value{
 A vector with the estimated number of (i) factors with a linear trend (r_1), (ii) zero-mean \emph{I(1)} factors  (r_2) and (3) zero-mean \emph{I(0)} factors (r_3).
 }
 \description{
-Runs the testing routine proposed in Barigozzi & Trapani (\href{https://doi.org/10.1080/07350015.2021.1901719}{2022}) to estimate the number and types of common trends in a nonstationary panel.
+Runs the testing routine proposed in Barigozzi & Trapani (2022) to estimate the number and types of common trends in a nonstationary panel.
 }
 \details{
-For details on the testing procedure I refer to Barigozzi & Trapani (\href{https://doi.org/10.1080/07350015.2021.1901719}{2022}, sec. 4).
+For details on the testing procedure I refer to Barigozzi & Trapani (2022, sec. 4).
 }
 \examples{
 # Simulate a nonstationary panel
@@ -33,5 +33,8 @@ X <- sim_DGP(N = 100, n_Periods = 200)
 BTtest(X = X, r_max = 10, alpha = 0.05, BT1 = TRUE)
 }
 \references{
-Barigozzi, M., & Trapani, L. (2022). Testing for common trends in nonstationary large datasets. \emph{Journal of Business & Economic Statistics}, 40(3), 1107-1122. DOI: \doi{10.1080/07350015.2021.1901719}
+Barigozzi, M., & Trapani, L. (2022). Testing for common trends in nonstationary large datasets. \emph{Journal of Business & Economic Statistics}, 40(3), 1107-1122. \doi{10.1080/07350015.2021.1901719}
+}
+\author{
+Paul Haimerl
 }
