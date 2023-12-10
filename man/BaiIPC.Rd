@@ -12,10 +12,10 @@ BaiIPC(X, r_max = 10)
 \item{r_max}{the maximum number of factors to consider.}
 }
 \value{
-A vector of the estimated number of factors for each of the three criterions.
+A vector of the estimated number of factors for each of the three criteria
 }
 \description{
-Calculates the Integrated Panel Criterions (IPC) to estimate the number of common trends in a nonstationary panel as proposed by Bai (2004).
+Calculates the Integrated Panel Criteria (IPC) to estimate the number of common trends in a nonstationary panel as proposed by Bai (2004).
 }
 \details{
 For further details on the criterion, I refer to Bai (2004, sec. 3).

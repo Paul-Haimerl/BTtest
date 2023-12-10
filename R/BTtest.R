@@ -30,7 +30,7 @@ BTtest <- function(X, r_max = 10, alpha = 0.05, BT1 = TRUE){
 
 #' Bai (2004) IPC
 #'
-#' @description Calculates the Integrated Panel Criterions (IPC) to estimate the number of common trends in a nonstationary panel as proposed by Bai (2004).
+#' @description Calculates the Integrated Panel Criteria (IPC) to estimate the number of common trends in a nonstationary panel as proposed by Bai (2004).
 #'
 #' @param X a (T x N) matrix of observations.
 #' @param r_max the maximum number of factors to consider.
@@ -47,7 +47,7 @@ BTtest <- function(X, r_max = 10, alpha = 0.05, BT1 = TRUE){
 #'
 #' @author Paul Haimerl
 #'
-#' @return A vector of the estimated number of factors for each of the three criterions.
+#' @return A vector of the estimated number of factors for each of the three criteria
 #'
 #' @export
 BaiIPC <- function(X, r_max = 10){
