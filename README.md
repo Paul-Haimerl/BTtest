@@ -10,7 +10,7 @@
 [![R-CMD-check](https://github.com/Paul-Haimerl/BTtest/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Paul-Haimerl/BTtest/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-You are analyzing a panel data set and what to determine if the
+You are analyzing a panel data set and want to determine if the
 cross-sectional units share a linear trend as well as any $I(1)$ or
 $I(0)$ dynamics?
 
