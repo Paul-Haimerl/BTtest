@@ -1,11 +1,12 @@
 #' Barigozzi & Trapani (2022)  Test
 #'
 #' @description Runs the testing routine proposed in Barigozzi & Trapani (2022) to estimate the number and types of common trends in a nonstationary panel.
+#' The method can identify the existence of a common factor subject to a linear trend, as well as the number of zero-mean \emph{I(1)} and zero-mean \emph{I(0)} factors.
 #'
 #' @param X a (\emph{T x N}) matrix of observations.
 #' @param r_max the maximum number of factors to consider.
 #' @param alpha the significance level.
-#' @param BT1 logical. If \code{TRUE}, a less conservative eigenvalue rescaling scheme is used. Default is \code{TRUE}.
+#' @param BT1 logical. If \code{TRUE}, a less conservative eigenvalue rescaling scheme is used. In small samples, \code{BT1 = FALSE} will result in fewer estimated factors. Default is \code{TRUE}.
 #'
 #' @details For details on the testing procedure I refer to Barigozzi & Trapani (2022, sec. 4).
 #'
@@ -20,7 +21,7 @@
 #'
 #' @author Paul Haimerl
 #'
-#' @return A vector with the estimated number of (i) factors with a linear trend (r_1), (ii) zero-mean \emph{I(1)} factors  (r_2) and (3) zero-mean \emph{I(0)} factors (r_3).
+#' @return A vector with the estimated number of (i) factors with a linear trend (\emph{r_1}), (ii) zero-mean \emph{I(1)} factors (\emph{r_2}) and (ii) zero-mean \emph{I(0)} factors (\emph{r_3}).
 #'
 #' @export
 BTtest <- function(X, r_max = 10, alpha = 0.05, BT1 = TRUE){
@@ -30,7 +31,7 @@ BTtest <- function(X, r_max = 10, alpha = 0.05, BT1 = TRUE){
 
 #' Bai (2004) IPC
 #'
-#' @description Calculates the Integrated Panel Criteria (IPC) to estimate the number of common trends in a nonstationary panel as proposed by Bai (2004).
+#' @description Calculates the Integrated Panel Criteria (IPC) to estimate the total number of common trends in a nonstationary panel as proposed by Bai (2004).
 #'
 #' @param X a (T x N) matrix of observations.
 #' @param r_max the maximum number of factors to consider.
@@ -47,7 +48,7 @@ BTtest <- function(X, r_max = 10, alpha = 0.05, BT1 = TRUE){
 #'
 #' @author Paul Haimerl
 #'
-#' @return A vector of the estimated number of factors for each of the three criteria
+#' @return A vector of the estimated number of factors for each of the three criteria.
 #'
 #' @export
 BaiIPC <- function(X, r_max = 10){

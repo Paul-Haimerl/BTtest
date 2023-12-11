@@ -10,7 +10,11 @@
 [![R-CMD-check](https://github.com/Paul-Haimerl/BTtest/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Paul-Haimerl/BTtest/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-Conveniently test for the number of common factors in large
+You are analyzing a panel data set and what to determine if the
+cross-sectional units share a linear trend as well as any $I(1)$ or
+$I(0)$ dynamics?
+
+Conveniently test for the number and type of common factors in large
 nonstationary panels using the routine by Barigozzi & Trapani
 ([2022](https://doi.org/10.1080/07350015.2021.1901719)).
 
@@ -62,10 +66,16 @@ panel includes more than 200 time periods ([Barigozzi & Trapani
 2022](https://doi.org/10.1080/07350015.2021.1901719), sec. 5; [Trapani,
 2018](https://doi.org/10.1080/01621459.2017.1328359), sec. 3).
 
+`BTtest` returns a vector indicating the existence of (i) a factor
+subject to a linear trend ($r_1$), the number of (ii) zero-mean $I(1)$
+factors ($r_2$) and the number of (iii) zero-mean $I(0)$ factors
+($r_3$). Note that only one factor with a linear trend can be
+identified.
+
 ## The Bai ([2004](https://doi.org/10.1016/j.jeconom.2003.10.022)) Integrated Information Criterion
 
-An alternative way of estimating the number of factors in a
-nonstationary panel is the Integrated Information Criterion by Bai
+An alternative way of estimating the total number of factors in a
+nonstationary panel are the Integrated Information Criteria by Bai
 ([2004](https://doi.org/10.1016/j.jeconom.2003.10.022)). The package
 also contains a function to easily evaluate this measure:
 
