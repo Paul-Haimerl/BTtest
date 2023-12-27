@@ -8,6 +8,7 @@
 [![CRAN_Version_Badge](http://www.r-pkg.org/badges/version/BTtest)](https://cran.r-project.org/package=BTtest)
 [![CRAN_Downloads_Badge](https://cranlogs.r-pkg.org/badges/grand-total/BTtest)](https://cran.r-project.org/package=BTtest)
 [![R-CMD-check](https://github.com/Paul-Haimerl/BTtest/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Paul-Haimerl/BTtest/actions/workflows/R-CMD-check.yaml)
+[![License:MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 <!-- badges: end -->
 
 You are analyzing a panel data set and want to determine if the
@@ -24,14 +25,15 @@ You can install the development version of BTtest from
 [GitHub](https://github.com/) with:
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("Paul-Haimerl/BTtest")
+# install.packages('devtools')
+devtools::install_github('Paul-Haimerl/BTtest')
+library(BTtest)
 ```
 
-After installation, attach the package as usual:
+The stable version is available on CRAN:
 
 ``` r
-library(BTtest)
+install.packages('BTtest')
 ```
 
 ## Data

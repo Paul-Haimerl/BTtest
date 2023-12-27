@@ -1,11 +1,11 @@
 #' Barigozzi & Trapani (2022)  Test
 #'
 #' @description Runs the testing routine proposed in Barigozzi & Trapani (2022) to estimate the number and types of common trends in a nonstationary panel.
-#' The method can identify the existence of a common factor subject to a linear trend, as well as the number of zero-mean \emph{I(1)} and zero-mean \emph{I(0)} factors.
+#' The method can identify the existence of a common factor subject to a linear trend, as well as the number of zero-mean \eqn{I(1)} and zero-mean \eqn{I(0)} factors.
 #'
-#' @param X a (\emph{T x N}) matrix of observations.
-#' @param r_max the maximum number of factors to consider.
-#' @param alpha the significance level.
+#' @param X a \eqn{T \times N} matrix of observations.
+#' @param r_max the maximum number of factors to consider. Default is 10.
+#' @param alpha the significance level. Default is 0.05.
 #' @param BT1 logical. If \code{TRUE}, a less conservative eigenvalue rescaling scheme is used. In small samples, \code{BT1 = FALSE} will result in fewer estimated factors. Default is \code{TRUE}.
 #'
 #' @details For details on the testing procedure I refer to Barigozzi & Trapani (2022, sec. 4).
@@ -21,7 +21,7 @@
 #'
 #' @author Paul Haimerl
 #'
-#' @return A vector with the estimated number of (i) factors with a linear trend (\emph{r_1}), (ii) zero-mean \emph{I(1)} factors (\emph{r_2}) and (ii) zero-mean \emph{I(0)} factors (\emph{r_3}).
+#' @return A vector with the estimated number of (i) factors with a linear trend (\eqn{r_1}), (ii) zero-mean \eqn{I(1)} factors (\eqn{r_2}) and (ii) zero-mean \eqn{I(0)} factors (\eqn{r_3}).
 #'
 #' @export
 BTtest <- function(X, r_max = 10, alpha = 0.05, BT1 = TRUE){
@@ -31,12 +31,12 @@ BTtest <- function(X, r_max = 10, alpha = 0.05, BT1 = TRUE){
 
 #' Bai (2004) IPC
 #'
-#' @description Calculates the Integrated Panel Criteria (IPC) to estimate the total number of common trends in a nonstationary panel as proposed by Bai (2004).
+#' @description Calculates the Integrated Panel Criteria (\emph{IPC}) to estimate the total number of common trends in a nonstationary panel as proposed by Bai (2004).
 #'
-#' @param X a (T x N) matrix of observations.
-#' @param r_max the maximum number of factors to consider.
+#' @param X a \eqn{T \times N} matrix of observations.
+#' @param r_max the maximum number of factors to consider. Default is 10.
 #'
-#' @details For further details on the criterion, I refer to Bai (2004, sec. 3).
+#' @details For further details on the three criteria and their respective differences, I refer to Bai (2004, sec. 3).
 #'
 #' @examples
 #' # Simulate a nonstationary panel

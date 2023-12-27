@@ -7,20 +7,20 @@
 BTtest(X, r_max = 10, alpha = 0.05, BT1 = TRUE)
 }
 \arguments{
-\item{X}{a (\emph{T x N}) matrix of observations.}
+\item{X}{a \eqn{T \times N} matrix of observations.}
 
-\item{r_max}{the maximum number of factors to consider.}
+\item{r_max}{the maximum number of factors to consider. Default is 10.}
 
-\item{alpha}{the significance level.}
+\item{alpha}{the significance level. Default is 0.05.}
 
 \item{BT1}{logical. If \code{TRUE}, a less conservative eigenvalue rescaling scheme is used. In small samples, \code{BT1 = FALSE} will result in fewer estimated factors. Default is \code{TRUE}.}
 }
 \value{
-A vector with the estimated number of (i) factors with a linear trend (\emph{r_1}), (ii) zero-mean \emph{I(1)} factors (\emph{r_2}) and (ii) zero-mean \emph{I(0)} factors (\emph{r_3}).
+A vector with the estimated number of (i) factors with a linear trend (\eqn{r_1}), (ii) zero-mean \eqn{I(1)} factors (\eqn{r_2}) and (ii) zero-mean \eqn{I(0)} factors (\eqn{r_3}).
 }
 \description{
 Runs the testing routine proposed in Barigozzi & Trapani (2022) to estimate the number and types of common trends in a nonstationary panel.
-The method can identify the existence of a common factor subject to a linear trend, as well as the number of zero-mean \emph{I(1)} and zero-mean \emph{I(0)} factors.
+The method can identify the existence of a common factor subject to a linear trend, as well as the number of zero-mean \eqn{I(1)} and zero-mean \eqn{I(0)} factors.
 }
 \details{
 For details on the testing procedure I refer to Barigozzi & Trapani (2022, sec. 4).

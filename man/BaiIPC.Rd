@@ -7,18 +7,18 @@
 BaiIPC(X, r_max = 10)
 }
 \arguments{
-\item{X}{a (T x N) matrix of observations.}
+\item{X}{a \eqn{T \times N} matrix of observations.}
 
-\item{r_max}{the maximum number of factors to consider.}
+\item{r_max}{the maximum number of factors to consider. Default is 10.}
 }
 \value{
 A vector of the estimated number of factors for each of the three criteria.
 }
 \description{
-Calculates the Integrated Panel Criteria (IPC) to estimate the total number of common trends in a nonstationary panel as proposed by Bai (2004).
+Calculates the Integrated Panel Criteria (\emph{IPC}) to estimate the total number of common trends in a nonstationary panel as proposed by Bai (2004).
 }
 \details{
-For further details on the criterion, I refer to Bai (2004, sec. 3).
+For further details on the three criteria and their respective differences, I refer to Bai (2004, sec. 3).
 }
 \examples{
 # Simulate a nonstationary panel
