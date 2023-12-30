@@ -30,11 +30,12 @@ Conveniently test for the number and type of common factors in large nonstationa
 
 You can install the development version of BTtest from [GitHub](https://github.com/) with:
 
-``` r
+```{r}
 # install.packages('devtools')
 devtools::install_github('Paul-Haimerl/BTtest')
 library(BTtest)
 ```
+
 
 The stable version is available on CRAN:
 
@@ -46,7 +47,7 @@ install.packages('BTtest')
 
 The `BTtest` packages includes a function that automatically simulates a panel with common nonstationary trends:
 
-``` r
+```{r}
 # Simulate a DGP containing a factor with a linear drift (r1 = 1, d1 = 1 -> drift = TRUE) and 
 # I(1) process (d2 = 1 -> drift_I1 = TRUE), one zero-mean I(1) factor 
 # (r2 = 1 -> r_I1 = 2; since drift_I1 = TRUE) and two zero-mean I(0) factors (r3 = 2 -> r_I0 = 2)
@@ -59,9 +60,11 @@ For specifics on the DGP, I refer to Barigozzi & Trapani ([2022](https://doi.org
 
 To run the test, the user only needs to pass a $T \times N$ data matrix `X` and specify an upper limit on the number of factors (`r_max`), a significance level (`alpha`) and whether to use a less (`BT1 = TRUE`) or more conservative (`BT1 = FALSE`) eigenvalue scaling scheme:
 
-``` r
-BTtest(X = X, r_max = 10, alpha = 0.05, BT1 = TRUE)
+```{r}
+BTresult <- BTtest(X = X, r_max = 10, alpha = 0.05, BT1 = TRUE)
+print(BTresult)
 ```
+
 
 Differences between `BT1 = TRUE/ FALSE`, where `BT1 = TRUE` tends to identify more factors compared to `BT1 = FALSE`, quickly vanish when the panel includes more than 200 time periods ([Barigozzi & Trapani 2022](https://doi.org/10.1080/07350015.2021.1901719), sec. 5; [Trapani, 2018](https://doi.org/10.1080/01621459.2017.1328359), sec. 3).
 
@@ -71,9 +74,12 @@ Differences between `BT1 = TRUE/ FALSE`, where `BT1 = TRUE` tends to identify mo
 
 An alternative way of estimating the total number of factors in a nonstationary panel are the Integrated Information Criteria by Bai ([2004](https://doi.org/10.1016/j.jeconom.2003.10.022)). The package also contains a function to easily evaluate this measure:
 
-``` r
-BaiIPC(X = X, r_max = 10)
+
+```{r}
+IPCresult <- BaiIPC(X = X, r_max = 10)
+print(IPCresult)
 ```
+
 
 ## References
 

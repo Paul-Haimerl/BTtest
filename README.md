@@ -27,6 +27,18 @@ You can install the development version of BTtest from
 ``` r
 # install.packages('devtools')
 devtools::install_github('Paul-Haimerl/BTtest')
+#> Downloading GitHub repo Paul-Haimerl/BTtest@HEAD
+#> 
+#> ── R CMD build ─────────────────────────────────────────────────────────────────
+#>          checking for file 'C:\Users\phaim\AppData\Local\Temp\RtmpqOo0VE\remotes4ec86f265d16\Paul-Haimerl-BTtest-a41c9eb/DESCRIPTION' ...     checking for file 'C:\Users\phaim\AppData\Local\Temp\RtmpqOo0VE\remotes4ec86f265d16\Paul-Haimerl-BTtest-a41c9eb/DESCRIPTION' ...   ✔  checking for file 'C:\Users\phaim\AppData\Local\Temp\RtmpqOo0VE\remotes4ec86f265d16\Paul-Haimerl-BTtest-a41c9eb/DESCRIPTION' (585ms)
+#>       ─  preparing 'BTtest':
+#>    checking DESCRIPTION meta-information ...     checking DESCRIPTION meta-information ...   ✔  checking DESCRIPTION meta-information
+#> ─  cleaning src
+#>       ─  checking for LF line-endings in source and make files and shell scripts
+#>       ─  checking for empty or unneeded directories
+#>       ─  building 'BTtest_0.10.tar.gz'
+#>      
+#> 
 library(BTtest)
 ```
 
@@ -59,7 +71,10 @@ significance level (`alpha`) and whether to use a less (`BT1 = TRUE`) or
 more conservative (`BT1 = FALSE`) eigenvalue scaling scheme:
 
 ``` r
-BTtest(X = X, r_max = 10, alpha = 0.05, BT1 = TRUE)
+BTresult <- BTtest(X = X, r_max = 10, alpha = 0.05, BT1 = TRUE)
+print(BTresult)
+#> r_1_hat r_2_hat r_3_hat 
+#>       0       2       2
 ```
 
 Differences between `BT1 = TRUE/ FALSE`, where `BT1 = TRUE` tends to
@@ -82,7 +97,10 @@ nonstationary panel are the Integrated Information Criteria by Bai
 also contains a function to easily evaluate this measure:
 
 ``` r
-BaiIPC(X = X, r_max = 10)
+IPCresult <- BaiIPC(X = X, r_max = 10)
+print(IPCresult)
+#> IPC_1 IPC_2 IPC_3 
+#>     2     2     2
 ```
 
 ## References
