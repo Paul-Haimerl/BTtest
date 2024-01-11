@@ -8,7 +8,7 @@
 [![CRAN_Version_Badge](http://www.r-pkg.org/badges/version/BTtest)](https://cran.r-project.org/package=BTtest)
 [![CRAN_Downloads_Badge](https://cranlogs.r-pkg.org/badges/grand-total/BTtest)](https://cran.r-project.org/package=BTtest)
 [![R-CMD-check](https://github.com/Paul-Haimerl/BTtest/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Paul-Haimerl/BTtest/actions/workflows/R-CMD-check.yaml)
-[![License:MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License:MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/license/mit/)
 <!-- badges: end -->
 
 You are analyzing a panel data set and want to determine if the
@@ -27,18 +27,8 @@ You can install the development version of BTtest from
 ``` r
 # install.packages('devtools')
 devtools::install_github('Paul-Haimerl/BTtest')
-#> Downloading GitHub repo Paul-Haimerl/BTtest@HEAD
-#> 
-#> ── R CMD build ─────────────────────────────────────────────────────────────────
-#>          checking for file 'C:\Users\phaim\AppData\Local\Temp\RtmpqOo0VE\remotes4ec86f265d16\Paul-Haimerl-BTtest-a41c9eb/DESCRIPTION' ...     checking for file 'C:\Users\phaim\AppData\Local\Temp\RtmpqOo0VE\remotes4ec86f265d16\Paul-Haimerl-BTtest-a41c9eb/DESCRIPTION' ...   ✔  checking for file 'C:\Users\phaim\AppData\Local\Temp\RtmpqOo0VE\remotes4ec86f265d16\Paul-Haimerl-BTtest-a41c9eb/DESCRIPTION' (585ms)
-#>       ─  preparing 'BTtest':
-#>    checking DESCRIPTION meta-information ...     checking DESCRIPTION meta-information ...   ✔  checking DESCRIPTION meta-information
-#> ─  cleaning src
-#>       ─  checking for LF line-endings in source and make files and shell scripts
-#>       ─  checking for empty or unneeded directories
-#>       ─  building 'BTtest_0.10.tar.gz'
-#>      
-#> 
+#> Skipping install of 'BTtest' from a github remote, the SHA1 (b1262865) has not changed since last install.
+#>   Use `force = TRUE` to force installation
 library(BTtest)
 ```
 
@@ -74,7 +64,7 @@ more conservative (`BT1 = FALSE`) eigenvalue scaling scheme:
 BTresult <- BTtest(X = X, r_max = 10, alpha = 0.05, BT1 = TRUE)
 print(BTresult)
 #> r_1_hat r_2_hat r_3_hat 
-#>       0       2       2
+#>       1       1       2
 ```
 
 Differences between `BT1 = TRUE/ FALSE`, where `BT1 = TRUE` tends to

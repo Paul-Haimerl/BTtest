@@ -1,4 +1,4 @@
-# BTtest 0.1.1
+# BTtest 0.10.1
 
 * Improved documentation.
 
