@@ -7,7 +7,9 @@
 
 [![CRAN_Version_Badge](http://www.r-pkg.org/badges/version/BTtest)](https://cran.r-project.org/package=BTtest)
 [![CRAN_Downloads_Badge](https://cranlogs.r-pkg.org/badges/grand-total/BTtest)](https://cran.r-project.org/package=BTtest)
-[![License:MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/license/mit/)
+[![R-CMD-check](https://github.com/Paul-Haimerl/BTtest/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Paul-Haimerl/BTtest/actions/workflows/R-CMD-check.yaml)
+[![License_GPLv3_Badge](https://img.shields.io/badge/License-GPLv3-yellow.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
+[![codecov](https://codecov.io/gh/Paul-Haimerl/BTtest/graph/badge.svg?token=LY14MGFFO8)](https://codecov.io/gh/Paul-Haimerl/BTtest)
 <!-- badges: end -->
 
 You are analyzing a panel data set and want to determine if the
@@ -30,13 +32,20 @@ devtools::install_github('Paul-Haimerl/BTtest')
 #> Downloading GitHub repo Paul-Haimerl/BTtest@HEAD
 #> 
 #> ── R CMD build ─────────────────────────────────────────────────────────────────
-#>          checking for file 'C:\Users\phaim\AppData\Local\Temp\RtmpG0G6Pf\remotes53d87db5228b\Paul-Haimerl-BTtest-75180c5/DESCRIPTION' ...     checking for file 'C:\Users\phaim\AppData\Local\Temp\RtmpG0G6Pf\remotes53d87db5228b\Paul-Haimerl-BTtest-75180c5/DESCRIPTION' ...   ✔  checking for file 'C:\Users\phaim\AppData\Local\Temp\RtmpG0G6Pf\remotes53d87db5228b\Paul-Haimerl-BTtest-75180c5/DESCRIPTION' (442ms)
+#>          checking for file 'C:\Users\phaim\AppData\Local\Temp\RtmpAhOixR\remotes20fc456d4dec\Paul-Haimerl-BTtest-a92a54f/DESCRIPTION' ...     checking for file 'C:\Users\phaim\AppData\Local\Temp\RtmpAhOixR\remotes20fc456d4dec\Paul-Haimerl-BTtest-a92a54f/DESCRIPTION' ...   ✔  checking for file 'C:\Users\phaim\AppData\Local\Temp\RtmpAhOixR\remotes20fc456d4dec\Paul-Haimerl-BTtest-a92a54f/DESCRIPTION' (448ms)
 #>       ─  preparing 'BTtest':
 #>    checking DESCRIPTION meta-information ...     checking DESCRIPTION meta-information ...   ✔  checking DESCRIPTION meta-information
-#> ─  cleaning src
-#>       ─  checking for LF line-endings in source and make files and shell scripts (674ms)
+#>   ─  cleaning src
+#>       ─  checking for LF line-endings in source and make files and shell scripts (742ms)
 #>       ─  checking for empty or unneeded directories
-#>       ─  building 'BTtest_0.10.1.tar.gz'
+#>      NB: this package now depends on R (>=        NB: this package now depends on R (>= 3.5.0)
+#>        WARNING: Added dependency on R >= 3.5.0 because serialized objects in
+#>      serialize/load version 3 cannot be read in older versions of R.
+#>      File(s) containing such objects:
+#>        'BTtest/tests/testthat/fixtures/X.rds'
+#>        'BTtest/tests/testthat/fixtures/X_0.rds'
+#>        'BTtest/tests/testthat/fixtures/factors.rds'
+#>   ─  building 'BTtest_0.10.2.tar.gz'
 #>      
 #> 
 library(BTtest)
