@@ -7,7 +7,7 @@
 BaiIPC(X, r_max = 10)
 }
 \arguments{
-\item{X}{a \eqn{T \times N} matrix of observations.}
+\item{X}{a \eqn{T \times N} numerical \code{matrix} or \code{data.frame} of observations.}
 
 \item{r_max}{the maximum number of factors to consider. Default is 10.}
 }

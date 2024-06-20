@@ -33,13 +33,20 @@ sim_DGP <- function(N = 100, n_Periods = 200, drift = TRUE, drift_I1 = TRUE, r_I
   #------------------------------#
 
   Tt <- n_Periods
+  r_I1 <- round(r_I1)
+  r_I0 <- round(r_I0)
+  if (r_I0 < 0 | r_I1 < 0) stop("The number of factors must be zeor or a positive integer\n")
+  N <- round(N)
+  n_Periods <- round(n_Periods)
+  if (N < 1 | n_Periods < 1) stop("The number of time periods and cross-sectional individuals must be a positive integer\n")
+  return_factor <- as.logical(return_factor)
   # For consistency with Barigozzi and Trapani (2021)
   d_1 <- r_1 <- as.numeric(drift)
   # Note that (r_1 == 1, d_1 == 0, d_2 == 1, r_2 == x) is observationally identical with (r_1 == 0, r_2 == x + 1) (same with d_2 == 0 and r_3)
   # As a consequence, I normalize r_1 == d_1 to save one extra (unnecessary) argument for the function
   d_2 <- as.numeric(drift_I1)
   if (drift_I1 & drift & r_I1 == 0) stop("Either set r_I1 > 0 or drift_I1 == FALSE\n")
-  if (!drift_I1 & drift & r_I0 == 0) stop("Either set r_I1 > 0 or drift_I1 == FALSE\n")
+  if (!drift_I1 & drift & r_I0 == 0) stop("Either set r_I0 > 0 or drift == FALSE\n")
   r_2 <- r_I1 - r_1 * d_2
   r_3 <- r_I0 - r_1 * (1 - d_2)
   r <- r_1 + r_2 + r_3

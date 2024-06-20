@@ -27,8 +27,19 @@ You can install the development version of BTtest from
 ``` r
 # install.packages('devtools')
 devtools::install_github('Paul-Haimerl/BTtest')
-#> Skipping install of 'BTtest' from a github remote, the SHA1 (b1262865) has not changed since last install.
-#>   Use `force = TRUE` to force installation
+#> Using GitHub PAT from the git credential store.
+#> Downloading GitHub repo Paul-Haimerl/BTtest@HEAD
+#> 
+#> ── R CMD build ─────────────────────────────────────────────────────────────────
+#>          checking for file 'C:\Users\phaim\AppData\Local\Temp\RtmpG0G6Pf\remotes53d87db5228b\Paul-Haimerl-BTtest-75180c5/DESCRIPTION' ...     checking for file 'C:\Users\phaim\AppData\Local\Temp\RtmpG0G6Pf\remotes53d87db5228b\Paul-Haimerl-BTtest-75180c5/DESCRIPTION' ...   ✔  checking for file 'C:\Users\phaim\AppData\Local\Temp\RtmpG0G6Pf\remotes53d87db5228b\Paul-Haimerl-BTtest-75180c5/DESCRIPTION' (442ms)
+#>       ─  preparing 'BTtest':
+#>    checking DESCRIPTION meta-information ...     checking DESCRIPTION meta-information ...   ✔  checking DESCRIPTION meta-information
+#> ─  cleaning src
+#>       ─  checking for LF line-endings in source and make files and shell scripts (674ms)
+#>       ─  checking for empty or unneeded directories
+#>       ─  building 'BTtest_0.10.1.tar.gz'
+#>      
+#> 
 library(BTtest)
 ```
 
@@ -44,6 +55,7 @@ The `BTtest` packages includes a function that automatically simulates a
 panel with common nonstationary trends:
 
 ``` r
+set.seed(1)
 # Simulate a DGP containing a factor with a linear drift (r1 = 1, d1 = 1 -> drift = TRUE) and 
 # I(1) process (d2 = 1 -> drift_I1 = TRUE), one zero-mean I(1) factor 
 # (r2 = 1 -> r_I1 = 2; since drift_I1 = TRUE) and two zero-mean I(0) factors (r3 = 2 -> r_I0 = 2)

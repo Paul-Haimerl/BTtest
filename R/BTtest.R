@@ -3,8 +3,8 @@
 #' @description Runs the testing routine proposed in Barigozzi & Trapani (2022) to estimate the number and types of common trends in a nonstationary panel.
 #' The method can identify the existence of a common factor subject to a linear trend, as well as the number of zero-mean \eqn{I(1)} and zero-mean \eqn{I(0)} factors.
 #'
-#' @param X a \eqn{T \times N} matrix of observations.
-#' @param r_max the maximum number of factors to consider. Default is 10.
+#' @param X a \eqn{T \times N} numerical \code{matrix} or \code{data.frame} of observations.
+#' @param r_max the maximum number of factors to consider. Default is 10. Note that chaning \code{r_max} does not alter the test result for any individual \code{r}.
 #' @param alpha the significance level. Default is 0.05.
 #' @param BT1 logical. If \code{TRUE}, a less conservative eigenvalue rescaling scheme is used. In small samples, \code{BT1 = FALSE} will result in fewer estimated factors. Default is \code{TRUE}.
 #'
@@ -25,6 +25,12 @@
 #'
 #' @export
 BTtest <- function(X, r_max = 10, alpha = 0.05, BT1 = TRUE){
+  X <- as.matrix(X)
+  r_max <- round(r_max)
+  if (!is.numeric(X)) stop("`X` must be a matrix or data.frame of numerical values\n")
+  if (!is.logical(BT1)) stop("`BT1` must take a logical value\n")
+  if (r_max < 1) stop("`r_max` must be a positive integer\n")
+  if (alpha <= 0 | alpha >= 1) stop("`alpha` must be a numeric value between 0 and 1\n")
   BTtestRoutine(X = X, r_max = r_max, alpha = alpha, BT1 = BT1)
 }
 
@@ -33,7 +39,7 @@ BTtest <- function(X, r_max = 10, alpha = 0.05, BT1 = TRUE){
 #'
 #' @description Calculates the Integrated Panel Criteria (\emph{IPC}) to estimate the total number of common trends in a nonstationary panel as proposed by Bai (2004).
 #'
-#' @param X a \eqn{T \times N} matrix of observations.
+#' @param X a \eqn{T \times N} numerical \code{matrix} or \code{data.frame} of observations.
 #' @param r_max the maximum number of factors to consider. Default is 10.
 #'
 #' @details For further details on the three criteria and their respective differences, I refer to Bai (2004, sec. 3).
@@ -52,5 +58,9 @@ BTtest <- function(X, r_max = 10, alpha = 0.05, BT1 = TRUE){
 #'
 #' @export
 BaiIPC <- function(X, r_max = 10){
+  X <- as.matrix(X)
+  if (!is.numeric(X)) stop("`X` must be a matrix or data.frame of numerical values\n")
+  r_max <- round(r_max)
+  if (r_max < 1) stop("`r_max` must be a positive integer\n")
   BaiIPCRoutine(X = X, r_max = r_max)
 }
