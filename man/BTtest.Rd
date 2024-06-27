@@ -4,16 +4,18 @@
 \alias{BTtest}
 \title{Barigozzi & Trapani (2022)  Test}
 \usage{
-BTtest(X, r_max = 10, alpha = 0.05, BT1 = TRUE)
+BTtest(X, r_max = 10, alpha = 0.05, BT1 = TRUE, R = NULL)
 }
 \arguments{
 \item{X}{a \eqn{T \times N} numerical \code{matrix} or \code{data.frame} of observations.}
 
-\item{r_max}{the maximum number of factors to consider. Default is 10. Note that chaning \code{r_max} does not alter the test result for any individual \code{r}.}
+\item{r_max}{the maximum number of factors to consider. Default is 10. Note that changing \code{r_max} does not alter the test result for any individual \code{r}.}
 
 \item{alpha}{the significance level. Default is 0.05.}
 
 \item{BT1}{logical. If \code{TRUE}, a less conservative eigenvalue rescaling scheme is used. In small samples, \code{BT1 = FALSE} will result in fewer estimated factors. Default is \code{TRUE}.}
+
+\item{R}{the number of draws from an \emph{i.i.d.} standard normal random variable that constructs the randomized test statistic. If \code{R = NULL}, the heuristic \code{R}\eqn{= 2N} is used when testing for a spike in the largest eigenvalue and else \code{R}\eqn{= max(100, floor(N / 3))}, where \eqn{N} is the number of columns in \code{X}. See Barigozzi & Trapani (2022, sec. 5). We recommend the default \code{NULL}.}
 }
 \value{
 A vector with the estimated number of (i) factors with a linear trend (\eqn{r_1}), (ii) zero-mean \eqn{I(1)} factors (\eqn{r_2}) and (ii) zero-mean \eqn{I(0)} factors (\eqn{r_3}).

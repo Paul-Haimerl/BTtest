@@ -62,7 +62,7 @@ arma::mat standEigVals(const arma::mat &X, int T, const int &N, const double &de
 }
 
 
-float randomTest(const arma::mat &Phi, const int &indx, const int &p, unsigned int &R)
+float randomTest(const arma::mat &Phi, const int &indx, const int &p, unsigned int R)
 {
   float phi = Phi.col(indx)(p);
   // Set the thresholds according to the zeroes of the Hermite polynomial

@@ -7,6 +7,8 @@ test_that("BT_test_result", {
   names(result_num) <- NULL
   expect_identical(result_num, c(1, 1, 2))
   expect_identical(names(result), paste0("r_", 1:3, "_hat"))
+  # Selecting a specific R
+  expect_no_error(BTtest(X = X, r_max = 10, alpha = 0.05, BT1 = TRUE, R = 100))
 })
 
 
