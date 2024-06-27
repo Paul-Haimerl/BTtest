@@ -9,7 +9,7 @@
 [![CRAN_Downloads_Badge](https://cranlogs.r-pkg.org/badges/grand-total/BTtest)](https://cran.r-project.org/package=BTtest)
 [![R-CMD-check](https://github.com/Paul-Haimerl/BTtest/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Paul-Haimerl/BTtest/actions/workflows/R-CMD-check.yaml)
 [![License_GPLv3_Badge](https://img.shields.io/badge/License-GPLv3-yellow.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
-[![codecov](https://codecov.io/gh/Paul-Haimerl/BTtest/graph/badge.svg?token=LY14MGFFO8)](https://codecov.io/gh/Paul-Haimerl/BTtest)
+[![codecov](https://codecov.io/gh/Paul-Haimerl/BTtest/graph/badge.svg?token=LY14MGFFO8)](https://app.codecov.io/gh/Paul-Haimerl/BTtest)
 <!-- badges: end -->
 
 You are analyzing a panel data set and want to determine if the
@@ -32,11 +32,11 @@ devtools::install_github('Paul-Haimerl/BTtest')
 #> Downloading GitHub repo Paul-Haimerl/BTtest@HEAD
 #> 
 #> ── R CMD build ─────────────────────────────────────────────────────────────────
-#>          checking for file 'C:\Users\phaim\AppData\Local\Temp\RtmpAhOixR\remotes20fc456d4dec\Paul-Haimerl-BTtest-a92a54f/DESCRIPTION' ...     checking for file 'C:\Users\phaim\AppData\Local\Temp\RtmpAhOixR\remotes20fc456d4dec\Paul-Haimerl-BTtest-a92a54f/DESCRIPTION' ...   ✔  checking for file 'C:\Users\phaim\AppData\Local\Temp\RtmpAhOixR\remotes20fc456d4dec\Paul-Haimerl-BTtest-a92a54f/DESCRIPTION' (448ms)
+#>          checking for file 'C:\Users\phaim\AppData\Local\Temp\RtmpkpIVTP\remotes2aac7a132017\Paul-Haimerl-BTtest-ab5c0e4/DESCRIPTION' ...  ✔  checking for file 'C:\Users\phaim\AppData\Local\Temp\RtmpkpIVTP\remotes2aac7a132017\Paul-Haimerl-BTtest-ab5c0e4/DESCRIPTION' (343ms)
 #>       ─  preparing 'BTtest':
 #>    checking DESCRIPTION meta-information ...     checking DESCRIPTION meta-information ...   ✔  checking DESCRIPTION meta-information
-#>   ─  cleaning src
-#>       ─  checking for LF line-endings in source and make files and shell scripts (742ms)
+#> ─  cleaning src
+#>       ─  checking for LF line-endings in source and make files and shell scripts (482ms)
 #>       ─  checking for empty or unneeded directories
 #>      NB: this package now depends on R (>=        NB: this package now depends on R (>= 3.5.0)
 #>        WARNING: Added dependency on R >= 3.5.0 because serialized objects in
@@ -45,7 +45,7 @@ devtools::install_github('Paul-Haimerl/BTtest')
 #>        'BTtest/tests/testthat/fixtures/X.rds'
 #>        'BTtest/tests/testthat/fixtures/X_0.rds'
 #>        'BTtest/tests/testthat/fixtures/factors.rds'
-#>   ─  building 'BTtest_0.10.2.tar.gz'
+#> ─  building 'BTtest_0.10.2.tar.gz'
 #>      
 #> 
 library(BTtest)
@@ -98,6 +98,13 @@ subject to a linear trend ($r_1$), the number of (ii) zero-mean $I(1)$
 factors ($r_2$) and the number of (iii) zero-mean $I(0)$ factors
 ($r_3$). Note that only one factor with a linear trend can be
 identified.
+
+The test statistic is constructed from `R` draws of an *i.i.d.* standard
+normal random variable. Consequently, the test results are
+nondeterministic and may vary slightly between executions, particularly
+when `R` is small. However, in practical applications this randomness
+can be eliminated by specifying a random seed `set.seed()` before
+invoking `BTtest()`.
 
 ## The Bai ([2004](https://doi.org/10.1016/j.jeconom.2003.10.022)) Integrated Information Criterion
 

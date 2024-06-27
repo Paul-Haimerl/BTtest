@@ -20,7 +20,7 @@ knitr::opts_chunk$set(
 [![CRAN\_Downloads\_Badge](https://cranlogs.r-pkg.org/badges/grand-total/BTtest)](https://cran.r-project.org/package=BTtest)
 [![R-CMD-check](https://github.com/Paul-Haimerl/BTtest/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Paul-Haimerl/BTtest/actions/workflows/R-CMD-check.yaml)
 [![License_GPLv3_Badge](https://img.shields.io/badge/License-GPLv3-yellow.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
-[![codecov](https://codecov.io/gh/Paul-Haimerl/BTtest/graph/badge.svg?token=LY14MGFFO8)](https://codecov.io/gh/Paul-Haimerl/BTtest)
+[![codecov](https://codecov.io/gh/Paul-Haimerl/BTtest/graph/badge.svg?token=LY14MGFFO8)](https://app.codecov.io/gh/Paul-Haimerl/BTtest)
 <!-- badges: end -->
 
 You are analyzing a panel data set and want to determine if the cross-sectional units share a linear trend as well as any $I(1)$ or $I(0)$ dynamics? 
@@ -71,6 +71,8 @@ print(BTresult)
 Differences between `BT1 = TRUE/ FALSE`, where `BT1 = TRUE` tends to identify more factors compared to `BT1 = FALSE`, quickly vanish when the panel includes more than 200 time periods ([Barigozzi & Trapani 2022](https://doi.org/10.1080/07350015.2021.1901719), sec. 5; [Trapani, 2018](https://doi.org/10.1080/01621459.2017.1328359), sec. 3).
 
 `BTtest` returns a vector indicating the existence of (i) a factor subject to a linear trend ($r_1$), the number of (ii) zero-mean $I(1)$ factors ($r_2$) and the number of (iii) zero-mean $I(0)$ factors ($r_3$). Note that only one factor with a linear trend can be identified.
+
+The test statistic is constructed from `R` draws of an *i.i.d.* standard normal random variable. Consequently, the test results are nondeterministic and may vary slightly between executions, particularly when `R` is small. However, in practical applications this randomness can be eliminated by specifying a random seed `set.seed()` before invoking `BTtest()`.
 
 ## The Bai ([2004](https://doi.org/10.1016/j.jeconom.2003.10.022)) Integrated Information Criterion
 

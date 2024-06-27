@@ -4,9 +4,10 @@
 #' The method can identify the existence of a common factor subject to a linear trend, as well as the number of zero-mean \eqn{I(1)} and zero-mean \eqn{I(0)} factors.
 #'
 #' @param X a \eqn{T \times N} numerical \code{matrix} or \code{data.frame} of observations.
-#' @param r_max the maximum number of factors to consider. Default is 10. Note that chaning \code{r_max} does not alter the test result for any individual \code{r}.
+#' @param r_max the maximum number of factors to consider. Default is 10. Note that changing \code{r_max} does not alter the test result for any individual \code{r}.
 #' @param alpha the significance level. Default is 0.05.
 #' @param BT1 logical. If \code{TRUE}, a less conservative eigenvalue rescaling scheme is used. In small samples, \code{BT1 = FALSE} will result in fewer estimated factors. Default is \code{TRUE}.
+#' @param R the number of draws from an \emph{i.i.d.} standard normal random variable that constructs the randomized test statistic. If \code{R = NULL}, the heuristic \code{R}\eqn{= 2N} is used when testing for a spike in the largest eigenvalue and else \code{R}\eqn{= max(100, floor(N / 3))}, where \eqn{N} is the number of columns in \code{X}. See Barigozzi & Trapani (2022, sec. 5). We recommend the default \code{NULL}.
 #'
 #' @details For details on the testing procedure I refer to Barigozzi & Trapani (2022, sec. 4).
 #'
@@ -24,14 +25,15 @@
 #' @return A vector with the estimated number of (i) factors with a linear trend (\eqn{r_1}), (ii) zero-mean \eqn{I(1)} factors (\eqn{r_2}) and (ii) zero-mean \eqn{I(0)} factors (\eqn{r_3}).
 #'
 #' @export
-BTtest <- function(X, r_max = 10, alpha = 0.05, BT1 = TRUE){
+BTtest <- function(X, r_max = 10, alpha = 0.05, BT1 = TRUE, R = NULL){
   X <- as.matrix(X)
   r_max <- round(r_max)
   if (!is.numeric(X)) stop("`X` must be a matrix or data.frame of numerical values\n")
   if (!is.logical(BT1)) stop("`BT1` must take a logical value\n")
   if (r_max < 1) stop("`r_max` must be a positive integer\n")
   if (alpha <= 0 | alpha >= 1) stop("`alpha` must be a numeric value between 0 and 1\n")
-  BTtestRoutine(X = X, r_max = r_max, alpha = alpha, BT1 = BT1)
+  if (is.null(R)) R <- max(floor(NCOL(X) / 3), 100)
+  BTtestRoutine(X = X, r_max = r_max, alpha = alpha, BT1 = BT1, R = R)
 }
 
 

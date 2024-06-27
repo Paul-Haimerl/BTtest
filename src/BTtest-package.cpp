@@ -62,7 +62,7 @@ arma::mat standEigVals(const arma::mat &X, int T, const int &N, const double &de
 }
 
 
-float randomTest(const arma::mat &Phi, const int &indx, const int &p, const int &R)
+float randomTest(const arma::mat &Phi, const int &indx, const int &p, unsigned int &R)
 {
   float phi = Phi.col(indx)(p);
   // Set the thresholds according to the zeroes of the Hermite polynomial
@@ -91,24 +91,21 @@ float randomTest(const arma::mat &Phi, const int &indx, const int &p, const int 
 }
 
 
-int randomTestWrapper(const arma::mat &Phi, const int &indx, const int &r_min, const int &r_max, const float &sig)
+int randomTestWrapper(const arma::mat &Phi, const int &indx, const int &r_min, const int &r_max, const float &sig, const unsigned int &R)
 {
   int N = Phi.n_rows;
-  int R_tilde = fmax(floor(N / 3.0), 100);
-  int R;
   int r_hat = r_min;
+  unsigned int R_tilde;
   // Iteratively test the different eigenvalues
   for (int r = r_min; r < r_max; r++)
   {
-    if (r == 0)
+    if (r == 0 && R == fmax(floor(N / 3.0), 100))
     {
-      R = 2 * N;
+      R_tilde = 2 * N;
+    } else {
+      R_tilde = R;
     }
-    else
-    {
-      R = R_tilde;
-    }
-    float pvalue = randomTest(Phi, indx, r, R);
+    float pvalue = randomTest(Phi, indx, r, R_tilde);
     if (pvalue > sig)
     {
       r_hat = r + 1;
@@ -122,7 +119,7 @@ int randomTestWrapper(const arma::mat &Phi, const int &indx, const int &r_min, c
 }
 
 // [[Rcpp::export]]
-NumericVector BTtestRoutine(const arma::mat &X, const int &r_max, const double &alpha, const bool &BT1)
+NumericVector BTtestRoutine(const arma::mat &X, const int &r_max, const double &alpha, const bool &BT1, const unsigned int &R)
 {
 
   //------------------------------//
@@ -166,7 +163,7 @@ NumericVector BTtestRoutine(const arma::mat &X, const int &r_max, const double &
     }
     // Exploit some test iterations that are already computed in prev. runs
     r_min = r_hat(i - 1);
-    r_hat(i) = randomTestWrapper(Phi, i - 1, r_min, r_max_tilde, sig);
+    r_hat(i) = randomTestWrapper(Phi, i - 1, r_min, r_max_tilde, sig, R);
   }
 
   //------------------------------//
