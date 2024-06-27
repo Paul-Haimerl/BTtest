@@ -292,7 +292,6 @@ simARMA <- function(Tt, pqmax = c(1, 0), sd = 1, coef_limits = c(-.5, .5)) {
 # @return vector with stationary simulated coefficients
 
 simARMACoef <- function(pq, limits) {
-  if (is.null(limits)) limits <- c(-1, 1)
   # AR
   if (pq[1] == 0) {
     ar <- NULL
