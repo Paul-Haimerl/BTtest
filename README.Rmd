@@ -29,16 +29,16 @@ Conveniently test for the number and type of common factors in large nonstationa
 
 ## Installation
 
-You can install the development version of BTtest from [GitHub](https://github.com/) with:
+You can install the development version (0.10.3) of BTtest from [GitHub](https://github.com/) with:
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 # install.packages('devtools')
 devtools::install_github('Paul-Haimerl/BTtest')
 library(BTtest)
 ```
 
 
-The stable version is available on CRAN:
+The stable version (0.10.2) is available on CRAN:
 
 ``` r
 install.packages('BTtest')

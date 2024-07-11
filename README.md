@@ -22,36 +22,16 @@ nonstationary panels using the routine by Barigozzi & Trapani
 
 ## Installation
 
-You can install the development version of BTtest from
+You can install the development version (0.10.3) of BTtest from
 [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages('devtools')
 devtools::install_github('Paul-Haimerl/BTtest')
-#> Using GitHub PAT from the git credential store.
-#> Downloading GitHub repo Paul-Haimerl/BTtest@HEAD
-#> 
-#> ── R CMD build ─────────────────────────────────────────────────────────────────
-#>          checking for file 'C:\Users\phaim\AppData\Local\Temp\RtmpkpIVTP\remotes2aac7a132017\Paul-Haimerl-BTtest-ab5c0e4/DESCRIPTION' ...  ✔  checking for file 'C:\Users\phaim\AppData\Local\Temp\RtmpkpIVTP\remotes2aac7a132017\Paul-Haimerl-BTtest-ab5c0e4/DESCRIPTION' (343ms)
-#>       ─  preparing 'BTtest':
-#>    checking DESCRIPTION meta-information ...     checking DESCRIPTION meta-information ...   ✔  checking DESCRIPTION meta-information
-#> ─  cleaning src
-#>       ─  checking for LF line-endings in source and make files and shell scripts (482ms)
-#>       ─  checking for empty or unneeded directories
-#>      NB: this package now depends on R (>=        NB: this package now depends on R (>= 3.5.0)
-#>        WARNING: Added dependency on R >= 3.5.0 because serialized objects in
-#>      serialize/load version 3 cannot be read in older versions of R.
-#>      File(s) containing such objects:
-#>        'BTtest/tests/testthat/fixtures/X.rds'
-#>        'BTtest/tests/testthat/fixtures/X_0.rds'
-#>        'BTtest/tests/testthat/fixtures/factors.rds'
-#> ─  building 'BTtest_0.10.2.tar.gz'
-#>      
-#> 
 library(BTtest)
 ```
 
-The stable version is available on CRAN:
+The stable version (0.10.2) is available on CRAN:
 
 ``` r
 install.packages('BTtest')
