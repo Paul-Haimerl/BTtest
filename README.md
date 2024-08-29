@@ -22,8 +22,8 @@ nonstationary panels using the routine by Barigozzi & Trapani
 
 ## Installation
 
-You can install the development version (0.10.3) of BTtest from
-[GitHub](https://github.com/) with:
+Always stay up-to-date with the development version (0.10.3) of BTtest
+from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages('devtools')
@@ -31,7 +31,7 @@ devtools::install_github('Paul-Haimerl/BTtest')
 library(BTtest)
 ```
 
-The stable version (0.10.2) is available on CRAN:
+The stable version (0.10.3) is available on CRAN:
 
 ``` r
 install.packages('BTtest')
