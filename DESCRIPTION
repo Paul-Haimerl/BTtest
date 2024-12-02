@@ -2,9 +2,9 @@ Package: BTtest
 Title: Estimate the Number of Factors in Large Nonstationary Datasets
 Version: 0.10.3
 Authors@R: 
-    person("Paul", "Haimerl", , "p.haimerl@student.maastrichtuniversity.nl", role = c("aut", "cre"),
+    person("Paul", "Haimerl", , "paul.haimerl@econ.au.dk", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0003-3198-8317"))
-Maintainer: Paul Haimerl <p.haimerl@student.maastrichtuniversity.nl>
+Maintainer: Paul Haimerl <paul.haimerl@econ.au.dk>
 Description: 
   Large panel data sets are often subject to common trends. However, it can be difficult to determine the exact number of these common factors and analyse their properties.
   The package implements the Barigozzi and Trapani (2022) <doi:10.1080/07350015.2021.1901719> test, which not only provides an efficient way of estimating the number of common factors in large nonstationary panel data sets, but also gives further insights on factor classes. The routine identifies the existence of (i) a factor subject to a linear trend, (ii) the number of zero-mean I(1) and (iii) zero-mean I(0) factors.
